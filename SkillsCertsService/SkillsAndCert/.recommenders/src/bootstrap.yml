@@ -1,0 +1,27 @@
+#server:
+#  port: 8889
+#spring:
+#  application:
+#    name: account-service-sr
+#    strip-prefix: false
+#  customers
+#    path: /customers/**
+#    service-id: customer-service
+#    
+#eureka:
+#  client:
+#    enabled: true
+#    service-url:
+#      defaultZone: http://10.226.195.57:8888/eureka
+##  you probably wouldn't set it this short in production but will be convenient for dev
+#  instance:
+#    lease-expiration-duration-in-seconds: 2
+#    lease-renewal-interval-in-seconds: 1
+spring:
+  cloud:
+    config:
+      name: customer-service
+      discovery:
+        service-id: config-server
+        enabled:    true
+      fail-fast: true
