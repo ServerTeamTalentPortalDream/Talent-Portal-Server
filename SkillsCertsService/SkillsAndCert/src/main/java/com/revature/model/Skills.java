@@ -11,10 +11,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
-@Table(name = "skills")
+@Table(name = "skill")
 public class Skills {
 	
 	@Id
+	@Column(name ="skill_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

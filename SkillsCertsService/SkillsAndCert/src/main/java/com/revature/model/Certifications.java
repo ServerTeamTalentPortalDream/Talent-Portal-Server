@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
-@Table(name = "certifications")
+@Table(name = "certification")
 public class Certifications {
 
 	@Id
+	@Column(name ="cert_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "certificaton_name")
+	@Column(name = "cert_name")
 	private String certificationName;
 
 	public Certifications() {
