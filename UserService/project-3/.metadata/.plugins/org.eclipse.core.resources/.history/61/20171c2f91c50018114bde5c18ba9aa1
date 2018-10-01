@@ -1,0 +1,38 @@
+package com.revature.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.revature.models.User;
+import com.revature.repos.UserRepo;
+
+@Service
+public class UserService {
+	@Autowired
+	private UserRepo ur;
+	
+	public User findByUsername(String username) {
+		return ur.findByUsername(username);
+	}
+	public User findByUserId(int userId) {
+		return ur.getOne(userId);
+	}
+	public User findByUsernameAndPassword(String username, String pass) {
+		return ur.findByUsernameAndPassword(username, pass);
+	}
+	public User findByAssociateIdAndEmail(int AssociateId, String email) {
+		return ur.findByAssociateIdAndEmail(AssociateId, email);
+	}
+	public Boolean checkIfCertified(User u) {
+		return ur.checkIfCertified(u);
+	}
+	public List<User> findByRole(String Role){
+		return ur.findByRole(Role);
+	}
+	public User createUser(User u) {
+		return ur.save(u);
+	}
+
+}
