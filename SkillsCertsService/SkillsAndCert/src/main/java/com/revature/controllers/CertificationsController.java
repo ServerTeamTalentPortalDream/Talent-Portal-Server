@@ -14,7 +14,7 @@ import com.revature.services.CertifiactionsService;
 
 @CrossOrigin
 @RestController
-@RequestMapping(name = "certifications")
+@RequestMapping("certifications")
 public class CertificationsController {
 
 	@Autowired
