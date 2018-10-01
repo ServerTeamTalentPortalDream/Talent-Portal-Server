@@ -1,0 +1,166 @@
+package com.revature.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="")
+public class UserModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int associateID;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String pass;
+	private String role;
+	private String resume;
+	private String userId;
+	private boolean aupCert;
+	public UserModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public UserModel(int associateID, String firstName, String lastName, String email, String pass, String role,
+			String resume, String userId, boolean aupCert) {
+		super();
+		this.associateID = associateID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.pass = pass;
+		this.role = role;
+		this.resume = resume;
+		this.userId = userId;
+		this.aupCert = aupCert;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + associateID;
+		result = prime * result + (aupCert ? 1231 : 1237);
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
+		result = prime * result + ((resume == null) ? 0 : resume.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserModel other = (UserModel) obj;
+		if (associateID != other.associateID)
+			return false;
+		if (aupCert != other.aupCert)
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (pass == null) {
+			if (other.pass != null)
+				return false;
+		} else if (!pass.equals(other.pass))
+			return false;
+		if (resume == null) {
+			if (other.resume != null)
+				return false;
+		} else if (!resume.equals(other.resume))
+			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		return true;
+	}
+	public int getAssociateID() {
+		return associateID;
+	}
+	public void setAssociateID(int associateID) {
+		this.associateID = associateID;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getResume() {
+		return resume;
+	}
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public boolean isAupCert() {
+		return aupCert;
+	}
+	public void setAupCert(boolean aupCert) {
+		this.aupCert = aupCert;
+	}
+	@Override
+	public String toString() {
+		return "UserModel [associateID=" + associateID + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", pass=" + pass + ", role=" + role + ", resume=" + resume + ", userId=" + userId
+				+ ", aupCert=" + aupCert + "]";
+	}
+
+}
