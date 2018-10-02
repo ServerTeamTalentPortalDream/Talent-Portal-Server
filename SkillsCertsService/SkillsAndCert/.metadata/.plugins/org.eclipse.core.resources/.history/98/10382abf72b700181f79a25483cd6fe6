@@ -1,0 +1,129 @@
+package com.revature.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "friend")
+public class Friends {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "friend_id")
+	private int id;
+	
+	@Column(name = "friend_first_name")
+	private String friendFirstName;
+	
+	@Column(name = "friend_last_name")
+	private String friendLastName;
+	
+	@Column(name = "friend_age")
+	private int friendAge;
+	
+	@Column(name = "friend_email")
+	private String friendEmail;
+
+	public Friends() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFriendFirstName() {
+		return friendFirstName;
+	}
+
+	public void setFriendFirstName(String friendFirstName) {
+		this.friendFirstName = friendFirstName;
+	}
+
+	public String getFriendLastName() {
+		return friendLastName;
+	}
+
+	public void setFriendLastName(String friendLastName) {
+		this.friendLastName = friendLastName;
+	}
+
+	public int getFriendAge() {
+		return friendAge;
+	}
+
+	public void setFriendAge(int friendAge) {
+		this.friendAge = friendAge;
+	}
+
+	public String getFriendEmail() {
+		return friendEmail;
+	}
+
+	public void setFriendEmail(String friendEmail) {
+		this.friendEmail = friendEmail;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + friendAge;
+		result = prime * result + ((friendEmail == null) ? 0 : friendEmail.hashCode());
+		result = prime * result + ((friendFirstName == null) ? 0 : friendFirstName.hashCode());
+		result = prime * result + ((friendLastName == null) ? 0 : friendLastName.hashCode());
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Friends other = (Friends) obj;
+		if (friendAge != other.friendAge)
+			return false;
+		if (friendEmail == null) {
+			if (other.friendEmail != null)
+				return false;
+		} else if (!friendEmail.equals(other.friendEmail))
+			return false;
+		if (friendFirstName == null) {
+			if (other.friendFirstName != null)
+				return false;
+		} else if (!friendFirstName.equals(other.friendFirstName))
+			return false;
+		if (friendLastName == null) {
+			if (other.friendLastName != null)
+				return false;
+		} else if (!friendLastName.equals(other.friendLastName))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Friends [id=" + id + ", friendFirstName=" + friendFirstName + ", friendLastName=" + friendLastName
+				+ ", friendAge=" + friendAge + ", friendEmail=" + friendEmail + "]";
+	}
+	
+	
+	
+
+
+}
