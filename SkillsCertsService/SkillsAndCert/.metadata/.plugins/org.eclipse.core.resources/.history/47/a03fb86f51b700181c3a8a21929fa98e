@@ -1,0 +1,39 @@
+package com.revature.model;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
+public class AppUser {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private int id;
+	private String username;
+	private String password;
+	@Column(name = "user_first_name")
+	private String firstName;
+	@Column(name = "user_last_name")
+	private String lastName;
+	@Column(name = "user_age")
+	private int age;
+	@Column(name = "user_email")
+	private String email;
+	
+	@ManyToMany
+	@JoinTable(name = "friends", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "other_friend_id"))
+	private List<Friends> friends;
+	
+	
+}

@@ -1,0 +1,40 @@
+package com.revature.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "friends")
+public class Friends {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "friend_id")
+	private int id;
+	
+	@Column(name = "friend_first_name")
+	private String friendFirstName;
+	
+	@Column(name = "friend_last_name")
+	private String friendLastName;
+	
+	@Column(name = "friend_age")
+	private int friendAge;
+	
+	@Column(name = "friend_email")
+	private String friendEmail;
+
+	public Friends() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+
+
+}
