@@ -1,0 +1,27 @@
+SET SCHEMA 'cognizant';
+
+CREATE TABLE user_table(
+assoc_id SERIAL PRIMARY KEY,
+first_name TEXT NOT NULL,
+last_name TEXT NOT NULL,
+email TEXT UNIQUE NOT NULL,
+pass TEXT NOT NULL,
+resume TEXT,
+aup_cert BOOLEAN,
+user_role NUMERIC NOT NULL,
+project_id NUMERIC,
+user_id NUMERIC NOT NULL
+);
+
+CREATE TABLE user_has_certs(
+assoc_id INTEGER NOT NULL,
+cert_id INTEGER NOT NULL
+);
+CREATE TABLE user_has_skills(
+assoc_id INTEGER NOT NULL,
+skill_id INTEGER NOT NULL
+);
+ALTER TABLE user_has_skills 
+ADD FOREIGN KEY (assoc_id) REFERENCES user_table(assoc_id);
+ALTER TABLE user_has_certs 
+ADD FOREIGN KEY (assoc_id) REFERENCES user_table(assoc_id);
