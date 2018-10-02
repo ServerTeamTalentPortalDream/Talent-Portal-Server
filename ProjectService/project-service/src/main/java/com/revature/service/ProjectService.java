@@ -24,5 +24,8 @@ public class ProjectService {
 	public List<Project> findAll() {
 		return pr.findAll();
 	}
-
+	public Project findOne(int id) {
+		Project p = pr.getOne(id);
+		return p;
+	}
 }
