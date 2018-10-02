@@ -1,5 +1,0 @@
-package com.revature.repos;
-
-public class UserRepo extends JpaRepository <user, Integer>{
-
-}
