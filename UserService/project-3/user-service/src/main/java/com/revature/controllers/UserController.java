@@ -75,13 +75,20 @@ public class UserController {
 	}
 	
 	@PutMapping("resetPassword")
-	public void resetPassword(String password) {
+	public String resetPassword(@RequestBody Credentials u) {
+		User user = us.findByUserId(u.getUserId());
+		if(user.getPass().equals(u.getPass())) {
+			return "passwords match";
+		}
 		
+		return "did not match";
 	}
 
-	@PutMapping("resetPassword/{userId}")
-	public void temporaryPassword(@PathVariable int userId, String password) {
-		
+	@PutMapping("setPassword")
+	public void temporaryPassword(@RequestBody Credentials u) {
+		User user = us.findByUserId(u.getUserId());
+		user.setPass(u.getPass());
+		us.saveAndFlush(user);
 	}
 	
 	@GetMapping
