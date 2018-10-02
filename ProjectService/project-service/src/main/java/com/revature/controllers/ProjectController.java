@@ -3,6 +3,8 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +28,10 @@ public class ProjectController {
 	}
 	
 	@PostMapping
-	public int save(@RequestBody Project p) {
-		return ps.save(p);
+	public ResponseEntity<Integer> save(@RequestBody(required=false) Project p) {
+		int id = ps.save(p);
+		ResponseEntity<Integer> resp = new ResponseEntity<Integer>(id, HttpStatus.CREATED);
+		return resp;
 	}
 
 }

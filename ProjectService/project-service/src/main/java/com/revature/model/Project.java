@@ -30,6 +30,26 @@ public class Project {
 	private int supervisorId;
 	@Column(name="project_location")
 	private String projectLocation;
+	
+	public Project() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Project(int projectId, String competency, String customer, String projectName, Date startDate, Date endDate,
+			String details, String supervisor, int supervisorId, String projectLocation) {
+		super();
+		this.projectId = projectId;
+		this.competency = competency;
+		this.customer = customer;
+		this.projectName = projectName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.details = details;
+		this.supervisor = supervisor;
+		this.supervisorId = supervisorId;
+		this.projectLocation = projectLocation;
+	}
+
 	public int getProjectId() {
 		return projectId;
 	}
@@ -161,20 +181,7 @@ public class Project {
 			return false;
 		return true;
 	}
-	public Project(int projectId, String competency, String customer, String projectName, Date startDate, Date endDate,
-			String details, String supervisor, int supervisorId, String projectLocation) {
-		super();
-		this.projectId = projectId;
-		this.competency = competency;
-		this.customer = customer;
-		this.projectName = projectName;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.details = details;
-		this.supervisor = supervisor;
-		this.supervisorId = supervisorId;
-		this.projectLocation = projectLocation;
-	}
+
 	@Override
 	public String toString() {
 		return "Project [projectId=" + projectId + ", competency=" + competency + ", customer=" + customer
@@ -182,6 +189,8 @@ public class Project {
 				+ details + ", supervisor=" + supervisor + ", supervisorId=" + supervisorId + ", projectLocation="
 				+ projectLocation + "]";
 	}
-	
+
+
 	
 }
+
