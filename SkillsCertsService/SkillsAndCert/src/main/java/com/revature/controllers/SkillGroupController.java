@@ -15,7 +15,7 @@ import com.revature.services.SkillGroupService;
 @CrossOrigin
 @RestController
 @RequestMapping("skill-group")
-public class SkillGroupContoller {
+public class SkillGroupController {
 
 	@Autowired
 	private SkillGroupService sgs;
