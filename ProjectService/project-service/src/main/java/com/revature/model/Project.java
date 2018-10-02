@@ -1,6 +1,6 @@
 package com.revature.model;
 
-import java.util.List;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity 
 @Table(name="project")
@@ -23,33 +21,15 @@ public class Project {
 	@Column(name="project_name")
 	private String projectName;
 	@Column(name="start_date")
-	private String startDate;
+	private java.sql.Date startDate;
 	@Column(name="end_date")
-	private String endDate;
+	private java.sql.Date endDate;
 	private String details;
 	private String supervisor;
 	@Column(name="supervisor_id")
 	private int supervisorId;
 	@Column(name="project_location")
 	private String projectLocation;
-	public Project() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Project(int projectId, String competency, String customer, String projectName, String startDate,
-			String endDate, String details, String supervisor, int supervisorId, String projectLocation) {
-		super();
-		this.projectId = projectId;
-		this.competency = competency;
-		this.customer = customer;
-		this.projectName = projectName;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.details = details;
-		this.supervisor = supervisor;
-		this.supervisorId = supervisorId;
-		this.projectLocation = projectLocation;
-	}
 	public int getProjectId() {
 		return projectId;
 	}
@@ -74,16 +54,16 @@ public class Project {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	public String getStartDate() {
+	public java.sql.Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
+	public void setStartDate(java.sql.Date startDate) {
 		this.startDate = startDate;
 	}
-	public String getEndDate() {
+	public java.sql.Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(java.sql.Date endDate) {
 		this.endDate = endDate;
 	}
 	public String getDetails() {
@@ -181,6 +161,20 @@ public class Project {
 			return false;
 		return true;
 	}
+	public Project(int projectId, String competency, String customer, String projectName, Date startDate, Date endDate,
+			String details, String supervisor, int supervisorId, String projectLocation) {
+		super();
+		this.projectId = projectId;
+		this.competency = competency;
+		this.customer = customer;
+		this.projectName = projectName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.details = details;
+		this.supervisor = supervisor;
+		this.supervisorId = supervisorId;
+		this.projectLocation = projectLocation;
+	}
 	@Override
 	public String toString() {
 		return "Project [projectId=" + projectId + ", competency=" + competency + ", customer=" + customer
@@ -188,7 +182,6 @@ public class Project {
 				+ details + ", supervisor=" + supervisor + ", supervisorId=" + supervisorId + ", projectLocation="
 				+ projectLocation + "]";
 	}
-	
 	
 	
 }
