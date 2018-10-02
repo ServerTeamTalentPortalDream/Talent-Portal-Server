@@ -1,0 +1,27 @@
+server.port=8080
+
+spring.jpa.properties.hibernate.default_schema=movies
+
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.datasource.username=postgres
+spring.datasource.password=bondstone
+spring.jpa.show-sql=true
+
+#Generates a database based on your Entity classes
+spring.jpa.generate-ddl=true
+
+#Runs the 'data.sql' file in your resources directory
+spring.datasource.initialization-mode=NEVER
+
+#Creates the tables on start up, drops them on project close/restart
+spring.jpa.hibernate.ddl-auto=none
+
+#Logging
+logging.level.root=INFO
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate=INFO
+
+
+spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false
