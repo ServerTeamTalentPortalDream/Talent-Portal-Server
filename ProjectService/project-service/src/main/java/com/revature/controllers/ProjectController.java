@@ -1,11 +1,16 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +38,20 @@ public class ProjectController {
 		ResponseEntity<Integer> resp = new ResponseEntity<Integer>(id, HttpStatus.CREATED);
 		return resp;
 	}
-
+	@Transactional
+	@GetMapping("{id}")
+	public Project findById(@PathVariable int id) {
+		Project project = ps.findOne(id);
+		return project;
+	}
+	
+	@PatchMapping
+	public  ResponseEntity<Project> updateUser(@RequestBody Project p) {
+		Optional<Project> respBody = ps.Update(p);
+		if(respBody.isPresent()) {
+			return new ResponseEntity<Project>(respBody.get(),HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Project>(p,HttpStatus.BAD_REQUEST);
+		}
+	}
 }
