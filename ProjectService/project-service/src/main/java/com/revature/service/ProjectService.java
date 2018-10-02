@@ -17,6 +17,10 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository pr;
 
+	public int save(Project p) {
+		return pr.saveAndFlush(p).getProjectId();
+	}
+	
 	public List<Project> findAll() {
 		return pr.findAll();
 	}
