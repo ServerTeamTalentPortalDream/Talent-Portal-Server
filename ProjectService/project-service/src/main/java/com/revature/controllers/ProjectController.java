@@ -1,7 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
-
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +34,10 @@ public class ProjectController {
 		ResponseEntity<Integer> resp = new ResponseEntity<Integer>(id, HttpStatus.CREATED);
 		return resp;
 	}
+	@Transactional
 	@GetMapping("{id}")
 	public Project findById(@PathVariable int id) {
 		Project project = ps.findOne(id);
 		return project;
-}
-
+	}
 }
