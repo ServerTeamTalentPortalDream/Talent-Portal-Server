@@ -20,3 +20,7 @@ eureka:
     instance:
       lease-expiration-duration-in-seconds: 2
       lease-renewal-interval-in-seconds: 1
+      
+jwt:
+  security:
+    key: j3H5Ld5nYmGWyULy6xwpOgfSH++NgKXnJMq20vpfd+8=t
