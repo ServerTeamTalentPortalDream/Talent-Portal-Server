@@ -1,7 +1,7 @@
 package com.revature.controllers;
 
 import java.io.UnsupportedEncodingException;
-
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,16 +58,16 @@ public class UserController {
 		return re;
 	}
 
-	@SuppressWarnings("deprecation")
 	@PostMapping("login")
-	public Map<String,Object> login(@RequestHeader("JWT" )String JWT, @RequestBody Credentials u) {
+	public Map<String,Object> login(@RequestBody Credentials u) {
 		
 		Map<String,Object> data = new HashMap<String,Object>();
 		String jwt = "0";
+		Date expDate = Date.from(Instant.now().plusSeconds(86400));
 		try {
 			jwt = Jwts.builder()
 					  .setSubject("users/TzMUocMF4p")
-					  .setExpiration(new Date(2020, 12, 25))
+					  .setExpiration(expDate)
 					  .claim("userid", u.getUserId())
 					  .claim("scope", "self groups/users")
 					  .signWith(
