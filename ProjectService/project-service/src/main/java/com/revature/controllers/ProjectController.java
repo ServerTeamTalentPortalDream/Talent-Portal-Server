@@ -38,6 +38,8 @@ public class ProjectController {
 		ResponseEntity<Integer> resp = new ResponseEntity<Integer>(id, HttpStatus.CREATED);
 		return resp;
 	}
+	
+	//finds a project by id
 	@Transactional
 	@GetMapping("{id}")
 	public Project findById(@PathVariable int id) {
@@ -45,6 +47,12 @@ public class ProjectController {
 		return project;
 	}
 	
+	@GetMapping("/recent")
+	public Project[] findRecentProjects() {
+		return ps.findRecent3();
+	}
+	
+	//Patches a project if it already exists and responds with 404 if it does not
 	@PatchMapping
 	public  ResponseEntity<Project> updateUser(@RequestBody Project p) {
 		Optional<Project> respBody = ps.Update(p);
