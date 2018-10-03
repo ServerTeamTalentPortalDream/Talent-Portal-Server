@@ -1,6 +1,10 @@
 package com.revature.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +25,16 @@ import com.revature.models.User;
 import com.revature.services.EmailService;
 import com.revature.services.UserService;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 @CrossOrigin(origins = "http://revature-1808.cnxwdhy3jnk8.us-west-2.rds.amazonaws.com:5432/postgres")
 @RestController
 //@JsonIgnoreProperties
 @RequestMapping("users")
 public class UserController {
-
+	SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+	
 	@Autowired
 	private UserService us;
 
@@ -41,8 +49,30 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public User login(@RequestBody Credentials u) {
-		return us.findByUserIdAndPass(u.getUserId(), u.getPass());
+	public Map<String,Object> login(@RequestBody Credentials u) {
+		Map<String,Object> data = new HashMap<String,Object>();
+		String jwt = "0";
+		try {
+			jwt = Jwts.builder()
+					  .setSubject("users/TzMUocMF4p")
+					  .setExpiration(new Date(1300819380))
+					  .claim("userid", u.getUserId())
+					  .claim("scope", "self groups/admins")
+					  .signWith(
+					    SignatureAlgorithm.HS256,
+					    "secret".getBytes("UTF-8")
+					  )
+					  .compact();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		User newUser = us.findByUserIdAndPass(u.getUserId(), u.getPass());
+		
+		data.put("user", newUser);
+		data.put("jwt", jwt);
+		
+		return data;
 	}
 
 	@PostMapping("changePass")
