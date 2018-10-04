@@ -17,8 +17,8 @@ spring:
     platform: postgres
     url: jdbc:postgresql://revature.c5u4wo8rhlrm.us-east-2.rds.amazonaws.com:5432/revature
     driver-class-name: org.postgresql.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: team1808
+    password: Bl4k3_&_tHe_fU11-staCk_Dev3lopeRs
 
 
 
