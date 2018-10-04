@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Certifications;
-import com.revature.services.CertifiactionsService;
+import com.revature.model.SkillGroup;
+import com.revature.services.SkillGroupService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -25,14 +25,15 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("certifications")
-public class CertificationsController {
+@RequestMapping("skill-group")
+public class SkillGroupController {
 
 	@Autowired
-	private CertifiactionsService cs;
+	private SkillGroupService sgs;
 	
 	@GetMapping
-	public List<Certifications> findAll(@RequestHeader("JWT" )String JWT){
+	public List<SkillGroup> findAll(@RequestHeader("JWT" )String JWT) {
+		
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -61,11 +62,13 @@ public class CertificationsController {
 		}
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
-		return cs.findAll();
+		
+		return sgs.findAll();
 	}
 	
 	@GetMapping("{id}")
-	public Certifications findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
+	public SkillGroup findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
+		
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -94,6 +97,7 @@ public class CertificationsController {
 		}
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
-		return cs.findById(id);
+		
+		return sgs.findById(id);
 	}
 }
