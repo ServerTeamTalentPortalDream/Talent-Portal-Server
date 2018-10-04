@@ -52,7 +52,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 //@JsonIgnoreProperties
 @RequestMapping("users")

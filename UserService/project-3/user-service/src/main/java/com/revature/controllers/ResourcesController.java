@@ -13,7 +13,7 @@ import com.revature.models.Resources;
 import com.revature.models.User;
 import com.revature.services.ResourcesService;
 
-@CrossOrigin(origins = "http://revature-1808.cnxwdhy3jnk8.us-west-2.rds.amazonaws.com:5432/postgres")
+@CrossOrigin
 @RestController
 //@JsonIgnoreProperties
 @RequestMapping("resources")
