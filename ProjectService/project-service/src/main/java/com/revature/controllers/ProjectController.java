@@ -31,7 +31,10 @@ public class ProjectController {
 		List<Project> projects = ps.findAll();
 		return projects;
 	}
-	
+	@GetMapping("hello")
+	public String greeting() {
+		return "hello, there.";
+	}
 	@PostMapping
 	public ResponseEntity<Integer> save(@RequestBody(required=false) Project p) {
 		int id = ps.save(p);
