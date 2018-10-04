@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,24 @@ import com.revature.service.ProjectService;
 @RequestMapping("project")
 public class ProjectController {
 
+	Logger log = Logger.getRootLogger();
 	@Autowired
 	private ProjectService ps;
 	
 	@GetMapping
 	public List<Project> findAll(){
-		List<Project> projects = ps.findAll();
-		return projects;
+		try {
+			List<Project> projects = ps.findAll();
+			return projects;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			for(StackTraceElement ste: e.getStackTrace()) {
+				log.error(ste);
+			}
+		}
+		log.warn("failed to find all");
+		return null;
 	}
 	@GetMapping("hello")
 	public String greeting() {
@@ -37,22 +49,52 @@ public class ProjectController {
 	}
 	@PostMapping
 	public ResponseEntity<Integer> save(@RequestBody(required=false) Project p) {
-		int id = ps.save(p);
-		ResponseEntity<Integer> resp = new ResponseEntity<Integer>(id, HttpStatus.CREATED);
-		return resp;
+		try {
+			int id = ps.save(p);
+			ResponseEntity<Integer> resp = new ResponseEntity<Integer>(id, HttpStatus.CREATED);
+			return resp;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			for(StackTraceElement ste: e.getStackTrace()) {
+				log.error(ste);
+			}
+		}
+		log.warn("failed create new project");
+		return null;
 	}
 	
 	//finds a project by id
 	@Transactional
 	@GetMapping("{id}")
 	public Project findById(@PathVariable int id) {
-		Project project = ps.findOne(id);
-		return project;
+		try {
+			Project project = ps.findOne(id);
+			return project;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			for(StackTraceElement ste: e.getStackTrace()) {
+				log.error(ste);
+			}
+		}
+		log.warn("failed to find project by id");
+		return null;
 	}
 	
 	@GetMapping("/recent")
 	public Project[] findRecentProjects() {
-		return ps.findRecent3();
+		try {
+			return ps.findRecent3();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			for(StackTraceElement ste: e.getStackTrace()) {
+				log.error(ste);
+			}
+		}
+		log.warn("failed to find recent projects");
+		return null;
 	}
 	
 	//Patches a project if it already exists and responds with 404 if it does not
