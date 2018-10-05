@@ -1,0 +1,23 @@
+CREATE TABLE cognizant_sc.certification
+(
+    cert_id serial,
+    cert_name character varying(50) NOT NULL,
+    CONSTRAINT certification_pkey PRIMARY KEY (cert_id)
+)
+
+CREATE TABLE cognizant_sc.skill
+(
+    skill_id serial,
+    skill_name character varying(50) NOT NULL,
+    group_id integer NOT NULL,
+    CONSTRAINT skill_pkey PRIMARY KEY (skill_id),
+    CONSTRAINT skill_skill_group_fkey FOREIGN KEY (group_id)
+        REFERENCES cognizant_sc.skill_group (group_id)
+)
+
+CREATE TABLE cognizant_sc.skill_group
+(
+    group_id serial,
+    group_name character varying(50) NOT NULL,
+    CONSTRAINT skill_group_pkey PRIMARY KEY (group_id)
+)
