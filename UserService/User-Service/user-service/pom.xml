@@ -29,11 +29,11 @@
 
 	<dependencies>
 
-
+		
 		<dependency>
-		      <groupId>io.rest-assured</groupId>
-		      <artifactId>json-path</artifactId>
-		      <version>3.1.1</version>
+    		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-hystrix</artifactId>
+    		<version>1.4.5.RELEASE</version>
 		</dependency>
 
 		<dependency>
