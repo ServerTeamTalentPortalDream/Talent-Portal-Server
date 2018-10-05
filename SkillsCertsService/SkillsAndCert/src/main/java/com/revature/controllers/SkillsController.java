@@ -29,5 +29,4 @@ public class SkillsController {
 	public Skills findById(@PathVariable int id) {
 		return ss.findById(id);
 	}
-	
 }
