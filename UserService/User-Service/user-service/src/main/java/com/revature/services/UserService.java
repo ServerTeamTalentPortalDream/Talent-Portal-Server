@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.User;
+import com.revature.models.UserSkills;
 import com.revature.repos.UserRepo;
 
 @Service
@@ -78,11 +79,14 @@ public class UserService {
 	public User findByUserIdAndEmail(int userId, String email) {
 		return ur.findByUserIdAndEmail(userId, email);
 	}
+	
+	public User findByAssociateId(int associateId) {
+		return ur.findByAssociateId(associateId);
+	}
 
 	public List<User> findByRole(int role) {
 		return ur.findByRole(role);
 	}
-
 	public User createUser(User u) {
 		String id = "";
 		id += u.getUserId();

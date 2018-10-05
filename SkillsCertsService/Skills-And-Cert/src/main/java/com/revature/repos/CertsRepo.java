@@ -3,9 +3,9 @@ package com.revature.repos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.revature.models.Skills;
+import com.revature.models.Certs;
 
 @Repository
-public interface SkillsRepo extends JpaRepository <Skills, Integer>{
+public interface CertsRepo extends JpaRepository <Certs, Integer>{
 
 }
