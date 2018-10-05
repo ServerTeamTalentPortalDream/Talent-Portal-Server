@@ -28,7 +28,12 @@
 	</properties>
 
 	<dependencies>
-
+		
+		<dependency>
+    		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-hystrix</artifactId>
+    		<version>1.4.5.RELEASE</version>
+		</dependency>
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
@@ -123,7 +128,13 @@
     		<artifactId>junit</artifactId>
     		<version>4.12</version>
 		</dependency>
-		
+		<!-- 
+		<dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-starter-eureka</artifactId>
+	        <version>1.1.5.RELEASE</version>
+	    </dependency>
+		 -->
 	</dependencies>
 
 	<build>

@@ -42,7 +42,7 @@ public class ProjectService {
 		}
 		return recents;
 	}
-	public Optional<Project> UpdateProject(Project newProject) {
+	public Optional<Project> updateProject(Project newProject) {
 
 		Optional<Project> oldProject = pr.findById(newProject.getProjectId());
 		oldProject.ifPresent(project -> {
