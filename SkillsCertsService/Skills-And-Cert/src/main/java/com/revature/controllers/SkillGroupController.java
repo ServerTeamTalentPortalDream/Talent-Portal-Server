@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+// import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.SkillGroup;
 import com.revature.services.SkillGroupService;
 
@@ -34,7 +34,7 @@ public class SkillGroupController {
 	@Autowired
 	private SkillGroupService sgs;
 	
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@GetMapping
 	public List<SkillGroup> findAll(@RequestHeader("JWT" )String JWT) {
 		
@@ -70,7 +70,7 @@ public class SkillGroupController {
 		return sgs.findAll();
 	}
 	
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@GetMapping("{id}")
 	public SkillGroup findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
 		

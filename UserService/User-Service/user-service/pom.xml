@@ -30,11 +30,11 @@
 	<dependencies>
 
 		
-		<dependency>
+		<!-- <dependency>
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-hystrix</artifactId>
     		<version>1.4.5.RELEASE</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 		    <groupId>io.rest-assured</groupId>
@@ -43,6 +43,7 @@
 		    <scope>test</scope>
 		</dependency>
 		
+
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
