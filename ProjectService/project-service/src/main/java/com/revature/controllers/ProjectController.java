@@ -191,7 +191,7 @@ public class ProjectController {
 
 	//Patches a project if it already exists and responds with 404 if it does not
 	@PatchMapping
-	public  ResponseEntity<Project> updateUser(@RequestHeader("JWT" )String JWT, @RequestBody Project p) {
+	public  ResponseEntity<Project> updateProject(@RequestHeader("JWT" )String JWT, @RequestBody Project p) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -220,7 +220,7 @@ public class ProjectController {
 		}
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
-		Optional<Project> respBody = ps.Update(p);
+		Optional<Project> respBody = ps.updateProject(p);
 		if(respBody.isPresent()) {
 			return new ResponseEntity<Project>(respBody.get(),HttpStatus.ACCEPTED);
 		} else {
