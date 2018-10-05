@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.model.Project;
 import com.revature.service.ProjectService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("project")
 public class ProjectController {
@@ -40,7 +42,7 @@ public class ProjectController {
 				log.error(ste);
 			}
 		}
-		log.warn("failed to find all");
+		log.warn("failed to find all"); 
 		return null;
 	}
 	
