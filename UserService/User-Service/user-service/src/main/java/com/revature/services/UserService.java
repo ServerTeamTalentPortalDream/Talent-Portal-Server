@@ -10,8 +10,11 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.models.User;
 import com.revature.models.UserSkills;
 import com.revature.repos.UserRepo;
@@ -23,7 +26,8 @@ public class UserService {
 
 	private static final int ITERATIONS = 10000;
 	private static final int KEY_LENGTH = 256;
-
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public static byte[] hash(char[] password, byte[] salt) {
 		PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
 		Arrays.fill(password, Character.MIN_VALUE);
@@ -36,7 +40,8 @@ public class UserService {
 			spec.clearPassword();
 		}
 	}
-
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public static String generateSecurePassword(String password, String salt) {
 		String returnValue = null;
 		byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
@@ -44,6 +49,7 @@ public class UserService {
 		return returnValue;
 	}
 
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public static boolean verifyUserPassword(String providedPassword, String securedPassword, String salt) {
 		boolean returnValue = false;
 		// Generate New secure password with the same salt
@@ -56,16 +62,19 @@ public class UserService {
 //	public User findByUsername(String userId) {
 //		return ur.findByUsername(username);
 //	}
-
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public List<User> findAll() {
 		return ur.findAll();
 	}
 
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public User findByUserId(int userId) {
 		User u = ur.findByUserId(userId);
 		return u;
 	}
 
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public User findByUserIdAndPass(int userId, String pass) {
 		User u = ur.findByUserId(userId);
 		String id = "";
@@ -76,29 +85,40 @@ public class UserService {
 		return null;
 	}
 
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public User findByUserIdAndEmail(int userId, String email) {
 		return ur.findByUserIdAndEmail(userId, email);
 	}
 	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public User findByAssociateId(int associateId) {
 		return ur.findByAssociateId(associateId);
 	}
 
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public List<User> findByRole(int role) {
 		return ur.findByRole(role);
 	}
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public User createUser(User u) {
 		String id = "";
 		id += u.getUserId();
 		u.setPass(generateSecurePassword(u.getPass(), id));
 		return ur.save(u);
 	}
-
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public void saveAndFlush(User user) {
 		String id = "";
 		id += user.getUserId();
 		user.setPass(generateSecurePassword(user.getPass(), id));
 		ur.saveAndFlush(user);
+	}
+	
+	@SuppressWarnings("unused")
+	public ResponseEntity<String> sendStatusCode(){
+		return new ResponseEntity<String>("Service is currently unavailable", HttpStatus.SERVICE_UNAVAILABLE);
 	}
 
 }
