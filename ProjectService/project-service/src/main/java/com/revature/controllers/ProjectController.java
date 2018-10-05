@@ -96,11 +96,11 @@ public class ProjectController {
 		log.warn("failed to find recent projects");
 		return null;
 	}
-	
+
 	//Patches a project if it already exists and responds with 404 if it does not
 	@PatchMapping
-	public  ResponseEntity<Project> updateUser(@RequestBody Project p) {
-		Optional<Project> respBody = ps.Update(p);
+	public  ResponseEntity<Project> update(@RequestBody Project p) {
+		Optional<Project> respBody = ps.UpdateProject(p);
 		if(respBody.isPresent()) {
 			return new ResponseEntity<Project>(respBody.get(),HttpStatus.ACCEPTED);
 		} else {
