@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+// import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.Project;
 import com.revature.service.ProjectService;
 
@@ -48,7 +48,7 @@ public class ProjectController {
 	public String greeting() {
 		return "hello, there.";
   }
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
   	@GetMapping
 	public List<Project> findAll(@RequestHeader("JWT" )String JWT){
 		
@@ -86,7 +86,7 @@ public class ProjectController {
 		return projects;
 
 	}
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@PostMapping
 	public ResponseEntity<Integer> save(@RequestHeader("JWT" )String JWT, @RequestBody(required=false) Project p) {
 		int id = ps.save(p);
@@ -125,7 +125,7 @@ public class ProjectController {
 	}
 	
 	//finds a project by id
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@Transactional
 	@GetMapping("{id}")
 	public Project findById(@RequestHeader("JWT" )String JWT,@PathVariable int id) {
@@ -161,7 +161,7 @@ public class ProjectController {
 		Assert.assertEquals(scope, "self groups/users");
 		return project;
 	}
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@GetMapping("/recent")
 	public Project[] findRecentProjects(@RequestHeader("JWT" )String JWT) {
 		String jwt = JWT;
@@ -196,7 +196,7 @@ public class ProjectController {
 	}
 
 	//Patches a project if it already exists and responds with 404 if it does not
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@PatchMapping
 	public  ResponseEntity<Project> updateProject(@RequestHeader("JWT" )String JWT, @RequestBody Project p) {
 		String jwt = JWT;

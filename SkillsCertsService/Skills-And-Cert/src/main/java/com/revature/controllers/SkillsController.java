@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+// import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.Skills;
 import com.revature.services.SkillsService;
 
@@ -66,7 +66,7 @@ public class SkillsController {
 		
 		return ss.findAll();
 	}
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@GetMapping("{id}")
 	public Skills findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
 		String jwt = JWT;
