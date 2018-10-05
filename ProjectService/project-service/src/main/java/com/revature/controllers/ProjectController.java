@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +37,16 @@ import io.jsonwebtoken.UnsupportedJwtException;
 @RequestMapping("project")
 public class ProjectController {
 
+	Logger log = Logger.getRootLogger();
 	@Autowired
 	private ProjectService ps;
-	
-	@GetMapping
+
+	@GetMapping("hello")
+	public String greeting() {
+		return "hello, there.";
+  }
+  
+  	@GetMapping
 	public List<Project> findAll(@RequestHeader("JWT" )String JWT){
 		
 		String jwt = JWT;
@@ -74,7 +81,7 @@ public class ProjectController {
 		List<Project> projects = ps.findAll();
 		return projects;
 	}
-	
+  
 	@PostMapping
 	public ResponseEntity<Integer> save(@RequestHeader("JWT" )String JWT, @RequestBody(required=false) Project p) {
 		int id = ps.save(p);
@@ -113,7 +120,7 @@ public class ProjectController {
 	}
 	
 	//finds a project by id
-	@Transactional
+  @Transactional
 	@GetMapping("{id}")
 	public Project findById(@RequestHeader("JWT" )String JWT,@PathVariable int id) {
 		Project project = ps.findOne(id);
@@ -181,7 +188,7 @@ public class ProjectController {
 		Assert.assertEquals(scope, "self groups/users");
 		return ps.findRecent3();
 	}
-	
+
 	//Patches a project if it already exists and responds with 404 if it does not
 	@PatchMapping
 	public  ResponseEntity<Project> updateUser(@RequestHeader("JWT" )String JWT, @RequestBody Project p) {
