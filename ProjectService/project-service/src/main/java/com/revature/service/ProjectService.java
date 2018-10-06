@@ -21,7 +21,7 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository pr;
 
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	public int save(Project p) {
 		System.out.println(p.getStartDate());
 		if (p.getStartDate() ==null) {
@@ -30,18 +30,18 @@ public class ProjectService {
 		return pr.saveAndFlush(p).getProjectId();
 	}
 	
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	public List<Project> findAll() {
 		return pr.findAll();
 	}
 	
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	public Project findOne(int id) {
 		Project p = pr.getOne(id);
 		return p;
 	}
 	
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	public Project[] findRecent3() {
 		Project[] recents = new Project[3];
 		List<Project> orderedProjects = pr.findAllByOrderByStartDate();
@@ -51,7 +51,7 @@ public class ProjectService {
 		return recents;
 	}
 	
-	@HystrixCommand(fallbackMethod = "sendStatusCode")
+	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	public Optional<Project> updateProject(Project newProject) {
 
 		Optional<Project> oldProject = pr.findById(newProject.getProjectId());
