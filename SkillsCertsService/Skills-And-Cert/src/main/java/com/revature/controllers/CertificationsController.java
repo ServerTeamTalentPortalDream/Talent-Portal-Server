@@ -34,7 +34,6 @@ public class CertificationsController {
 	@Autowired
 	private CertifiactionsService cs;
 	
-	// @HystrixCommand(fallbackMethod = "sendStatusCode")
 	@GetMapping
 	public List<Certifications> findAll(@RequestHeader("JWT" )String JWT){
 		String jwt = JWT;

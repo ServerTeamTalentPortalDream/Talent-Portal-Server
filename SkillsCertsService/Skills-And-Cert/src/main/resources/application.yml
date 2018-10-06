@@ -4,6 +4,9 @@ server:
 spring:
  application:
    name: skill-cert-service
+ cloud:
+    refresh:
+      enabled: false
  jpa:
    database-platform: org.hibernate.dialect.PostgreSQLDialect
    generate-ddl: false
