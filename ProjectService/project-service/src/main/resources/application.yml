@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: project-service
+  cloud:
+    refresh:
+      enabled: false
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
@@ -19,8 +22,6 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
-
-
 
 eureka:
   client:

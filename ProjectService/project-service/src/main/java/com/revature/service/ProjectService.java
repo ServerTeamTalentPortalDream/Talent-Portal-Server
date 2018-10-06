@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.Project;
 import com.revature.repos.ProjectRepository;
 
@@ -18,6 +21,7 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository pr;
 
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public int save(Project p) {
 		System.out.println(p.getStartDate());
 		if (p.getStartDate() ==null) {
@@ -26,14 +30,18 @@ public class ProjectService {
 		return pr.saveAndFlush(p).getProjectId();
 	}
 	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public List<Project> findAll() {
 		return pr.findAll();
-		
 	}
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public Project findOne(int id) {
 		Project p = pr.getOne(id);
 		return p;
 	}
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public Project[] findRecent3() {
 		Project[] recents = new Project[3];
 		List<Project> orderedProjects = pr.findAllByOrderByStartDate();
@@ -42,6 +50,8 @@ public class ProjectService {
 		}
 		return recents;
 	}
+	
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public Optional<Project> updateProject(Project newProject) {
 
 		Optional<Project> oldProject = pr.findById(newProject.getProjectId());
@@ -70,8 +80,11 @@ public class ProjectService {
 			}
 			pr.saveAndFlush(project);
 		});
-			return oldProject;
-
-				
+			return oldProject;	
+	}
+	
+	@SuppressWarnings("unused")
+	public ResponseEntity<String> sendStatusCode(){
+		return new ResponseEntity<String>("Service is currently unavailable", HttpStatus.SERVICE_UNAVAILABLE);
 	}
 }
