@@ -8,4 +8,6 @@ import com.revature.models.Resources;
 @Repository
 public interface ResourcesRepo extends JpaRepository <Resources, Integer>{
 
+	Resources findByResourceId(int resourceId);
+
 }

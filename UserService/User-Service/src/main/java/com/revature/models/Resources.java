@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,15 +27,18 @@ public class Resources {
 	private boolean aupCert;
 	@Column(name="project_id")
 	private int projectId;
-	@Column(name="competency_tag")
-	private String competencyTag;
-	private String grade;
+	
+	@ManyToOne
+	@JoinColumn(name="ct_id")
+	private CompetencyTags competencyTags;
+	@ManyToOne
+	@JoinColumn(name="grade_id")
+	private Grades grades;
+	
 	@Column(name="join_date")
 	private Date joinDate;
 	@Column(name="leave_date")
 	private Date leaveDate;
-	@Column(name="skill_group_id")
-	private int skillGroupId;
 	
 	@OneToMany(mappedBy = "resourceId")
 	private List<Certs> certs;
@@ -49,195 +54,23 @@ public class Resources {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Resources(int resourceId, int associateId, boolean aupCert, int projectId, String competencyTag,
-			String grade, Date joinDate, Date leaveDate, int skillGroupId, List<Certs> certs, List<Skills> skills,
+	public Resources(int resourceId, int associateId, boolean aupCert, int projectId, CompetencyTags competencyTags,
+			Grades grades, Date joinDate, Date leaveDate, List<Certs> certs, List<Skills> skills,
 			List<Resumes> resumes) {
 		super();
 		this.resourceId = resourceId;
 		this.associateId = associateId;
 		this.aupCert = aupCert;
 		this.projectId = projectId;
-		this.competencyTag = competencyTag;
-		this.grade = grade;
+		this.competencyTags = competencyTags;
+		this.grades = grades;
 		this.joinDate = joinDate;
 		this.leaveDate = leaveDate;
-		this.skillGroupId = skillGroupId;
 		this.certs = certs;
 		this.skills = skills;
 		this.resumes = resumes;
 	}
 
-	/**
-	 * @return the resourceId
-	 */
-	public int getResourceId() {
-		return resourceId;
-	}
-
-	/**
-	 * @param resourceId the resourceId to set
-	 */
-	public void setResourceId(int resourceId) {
-		this.resourceId = resourceId;
-	}
-
-	/**
-	 * @return the associateId
-	 */
-	public int getAssociateId() {
-		return associateId;
-	}
-
-	/**
-	 * @param associateId the associateId to set
-	 */
-	public void setAssociateId(int associateId) {
-		this.associateId = associateId;
-	}
-
-	/**
-	 * @return the aupCert
-	 */
-	public boolean isAupCert() {
-		return aupCert;
-	}
-
-	/**
-	 * @param aupCert the aupCert to set
-	 */
-	public void setAupCert(boolean aupCert) {
-		this.aupCert = aupCert;
-	}
-
-	/**
-	 * @return the projectId
-	 */
-	public int getProjectId() {
-		return projectId;
-	}
-
-	/**
-	 * @param projectId the projectId to set
-	 */
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
-	}
-
-	/**
-	 * @return the competencyTag
-	 */
-	public String getCompetencyTag() {
-		return competencyTag;
-	}
-
-	/**
-	 * @param competencyTag the competencyTag to set
-	 */
-	public void setCompetencyTag(String competencyTag) {
-		this.competencyTag = competencyTag;
-	}
-
-	/**
-	 * @return the grade
-	 */
-	public String getGrade() {
-		return grade;
-	}
-
-	/**
-	 * @param grade the grade to set
-	 */
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	/**
-	 * @return the joinDate
-	 */
-	public Date getJoinDate() {
-		return joinDate;
-	}
-
-	/**
-	 * @param joinDate the joinDate to set
-	 */
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
-	}
-
-	/**
-	 * @return the leaveDate
-	 */
-	public Date getLeaveDate() {
-		return leaveDate;
-	}
-
-	/**
-	 * @param leaveDate the leaveDate to set
-	 */
-	public void setLeaveDate(Date leaveDate) {
-		this.leaveDate = leaveDate;
-	}
-
-	/**
-	 * @return the skillGroupId
-	 */
-	public int getSkillGroupId() {
-		return skillGroupId;
-	}
-
-	/**
-	 * @param skillGroupId the skillGroupId to set
-	 */
-	public void setSkillGroupId(int skillGroupId) {
-		this.skillGroupId = skillGroupId;
-	}
-
-	/**
-	 * @return the certs
-	 */
-	public List<Certs> getCerts() {
-		return certs;
-	}
-
-	/**
-	 * @param certs the certs to set
-	 */
-	public void setCerts(List<Certs> certs) {
-		this.certs = certs;
-	}
-
-	/**
-	 * @return the skills
-	 */
-	public List<Skills> getSkills() {
-		return skills;
-	}
-
-	/**
-	 * @param skills the skills to set
-	 */
-	public void setSkills(List<Skills> skills) {
-		this.skills = skills;
-	}
-
-	/**
-	 * @return the resumes
-	 */
-	public List<Resumes> getResumes() {
-		return resumes;
-	}
-
-	/**
-	 * @param resumes the resumes to set
-	 */
-	public void setResumes(List<Resumes> resumes) {
-		this.resumes = resumes;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -245,21 +78,17 @@ public class Resources {
 		result = prime * result + associateId;
 		result = prime * result + (aupCert ? 1231 : 1237);
 		result = prime * result + ((certs == null) ? 0 : certs.hashCode());
-		result = prime * result + ((competencyTag == null) ? 0 : competencyTag.hashCode());
-		result = prime * result + ((grade == null) ? 0 : grade.hashCode());
+		result = prime * result + ((competencyTags == null) ? 0 : competencyTags.hashCode());
+		result = prime * result + ((grades == null) ? 0 : grades.hashCode());
 		result = prime * result + ((joinDate == null) ? 0 : joinDate.hashCode());
 		result = prime * result + ((leaveDate == null) ? 0 : leaveDate.hashCode());
 		result = prime * result + projectId;
 		result = prime * result + resourceId;
 		result = prime * result + ((resumes == null) ? 0 : resumes.hashCode());
-		result = prime * result + skillGroupId;
 		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -278,15 +107,15 @@ public class Resources {
 				return false;
 		} else if (!certs.equals(other.certs))
 			return false;
-		if (competencyTag == null) {
-			if (other.competencyTag != null)
+		if (competencyTags == null) {
+			if (other.competencyTags != null)
 				return false;
-		} else if (!competencyTag.equals(other.competencyTag))
+		} else if (!competencyTags.equals(other.competencyTags))
 			return false;
-		if (grade == null) {
-			if (other.grade != null)
+		if (grades == null) {
+			if (other.grades != null)
 				return false;
-		} else if (!grade.equals(other.grade))
+		} else if (!grades.equals(other.grades))
 			return false;
 		if (joinDate == null) {
 			if (other.joinDate != null)
@@ -307,8 +136,6 @@ public class Resources {
 				return false;
 		} else if (!resumes.equals(other.resumes))
 			return false;
-		if (skillGroupId != other.skillGroupId)
-			return false;
 		if (skills == null) {
 			if (other.skills != null)
 				return false;
@@ -317,14 +144,100 @@ public class Resources {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	public int getResourceId() {
+		return resourceId;
+	}
+
+	public void setResourceId(int resourceId) {
+		this.resourceId = resourceId;
+	}
+
+	public int getAssociateId() {
+		return associateId;
+	}
+
+	public void setAssociateId(int associateId) {
+		this.associateId = associateId;
+	}
+
+	public boolean isAupCert() {
+		return aupCert;
+	}
+
+	public void setAupCert(boolean aupCert) {
+		this.aupCert = aupCert;
+	}
+
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+
+	public CompetencyTags getCompetencyTags() {
+		return competencyTags;
+	}
+
+	public void setCompetencyTags(CompetencyTags competencyTags) {
+		this.competencyTags = competencyTags;
+	}
+
+	public Grades getGrades() {
+		return grades;
+	}
+
+	public void setGrades(Grades grades) {
+		this.grades = grades;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	public Date getLeaveDate() {
+		return leaveDate;
+	}
+
+	public void setLeaveDate(Date leaveDate) {
+		this.leaveDate = leaveDate;
+	}
+
+	public List<Certs> getCerts() {
+		return certs;
+	}
+
+	public void setCerts(List<Certs> certs) {
+		this.certs = certs;
+	}
+
+	public List<Skills> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<Skills> skills) {
+		this.skills = skills;
+	}
+
+	public List<Resumes> getResumes() {
+		return resumes;
+	}
+
+	public void setResumes(List<Resumes> resumes) {
+		this.resumes = resumes;
+	}
+
 	@Override
 	public String toString() {
 		return "Resources [resourceId=" + resourceId + ", associateId=" + associateId + ", aupCert=" + aupCert
-				+ ", projectId=" + projectId + ", competencyTag=" + competencyTag + ", grade=" + grade + ", joinDate="
-				+ joinDate + ", leaveDate=" + leaveDate + ", skillGroupId=" + skillGroupId + ", certs=" + certs
-				+ ", skills=" + skills + ", resumes=" + resumes + "]";
+				+ ", projectId=" + projectId + ", competencyTags=" + competencyTags + ", grades=" + grades
+				+ ", joinDate=" + joinDate + ", leaveDate=" + leaveDate + ", certs=" + certs + ", skills=" + skills
+				+ ", resumes=" + resumes + "]";
 	}
+
 }

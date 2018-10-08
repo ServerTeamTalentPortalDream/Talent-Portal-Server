@@ -52,7 +52,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @CrossOrigin
 @RestController
-//@JsonIgnoreProperties
 @RequestMapping("users")
 public class UserController {
 	SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -265,11 +264,10 @@ public class UserController {
 			newResource.setAssociateId(associateId);
 			newResource.setAupCert(r.isAupCert());
 			newResource.setProjectId(r.getProjectId());
-			newResource.setCompetencyTag(r.getCompetencyTag());
-			newResource.setGrade(r.getGrade());
+			newResource.setCompetencyTags(r.getCompetencyTags());
+			newResource.setGrades(r.getGrades());
 			newResource.setJoinDate(r.getJoinDate());
 			newResource.setLeaveDate(r.getLeaveDate());
-			newResource.setSkillGroupId(r.getSkillGroupId());
 			newResource.setCerts(new ArrayList<Certs>());
 			newResource.setSkills(new ArrayList<Skills>());
 			newResource.setResumes(new ArrayList<Resumes>());
