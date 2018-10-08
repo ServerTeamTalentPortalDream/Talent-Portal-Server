@@ -17,7 +17,6 @@ spring:
          use_jdbc_metadata_defaults: false
  datasource:
    driverClassName: org.postgresql.Driver
-
    url: ${DB_URL}
    username: ${DB_USERNAME}
    password: ${DB_PASSWORD}

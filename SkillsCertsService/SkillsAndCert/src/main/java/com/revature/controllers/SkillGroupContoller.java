@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.InvalidJWTException;
 import com.revature.model.SkillGroup;
 import com.revature.services.SkillGroupService;
 
@@ -65,7 +66,10 @@ public class SkillGroupContoller {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if(!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		log.info("Fiding all Skill-Groups");
 		
@@ -106,7 +110,10 @@ public class SkillGroupContoller {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if(!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		log.info("Fiding Skill-Group with id: " + id);
 		
