@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.InvalidJWTException;
 import com.revature.models.Resources;
 import com.revature.models.User;
 import com.revature.services.ResourcesService;
@@ -56,7 +57,11 @@ public class ResourceController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
+
 		return rs.findAll();
 	}
 	
@@ -86,7 +91,11 @@ public class ResourceController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
+
 		Resources r = rs.findByResourceId(resourceId);
 		return r;
 	}
