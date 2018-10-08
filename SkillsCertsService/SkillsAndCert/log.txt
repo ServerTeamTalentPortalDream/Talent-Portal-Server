@@ -1,0 +1,3 @@
+2018-10-08 12:59:22 INFO  CertificationsController:69 - Finding all Certifications
+2018-10-08 12:59:28 INFO  CertificationsController:77 - The id passed in is:1
+2018-10-08 12:59:28 INFO  CertificationsController:110 - Finding Certifications with ID:1
