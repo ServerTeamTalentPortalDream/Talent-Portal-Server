@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exceptions.InvalidJWTException;
 import com.revature.dto.Credentials;
 import com.revature.dto.ResetPass;
 import com.revature.dto.ResourcesCred;
-import com.revature.exception.InvalidJWTException;
 import com.revature.models.Certs;
 import com.revature.models.Resources;
 import com.revature.models.Resumes;
@@ -92,8 +92,11 @@ public class UserController {
 			e.printStackTrace();
 		}
 		User user = us.findByUserIdAndPass(u.getUserId(), u.getPass());
-		data.put("user", user);
-		data.put("jwt", jwt);
+		
+		if (user != null) {
+			data.put("user", user);
+			data.put("jwt", jwt);
+		}
 
 		return data;
 	}
