@@ -7,9 +7,17 @@ server:
   
 zuul:
   routes:
-    account:
-      path: /accounts/**
-      service-id: account-service
+    project-service:
+      path: /project/**
+      service-id: project-service
+      strip-prefix: false
+    user-service:
+      path: /users/**
+      service-id: user-service
+      strip-prefix: false
+    skill-cert-service:
+      path: /skills/**
+      service-id: skill-cert-service
       strip-prefix: false
 
 eureka:
