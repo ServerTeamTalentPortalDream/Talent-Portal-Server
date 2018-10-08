@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +27,8 @@ import io.jsonwebtoken.UnsupportedJwtException;
 @RestController
 @RequestMapping("skill-group")
 public class SkillGroupContoller {
+	
+	private Logger log = Logger.getRootLogger();
 
 	@Autowired
 	private SkillGroupService sgs;
@@ -43,26 +46,36 @@ public class SkillGroupContoller {
 		} catch (ExpiredJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		} catch (UnsupportedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
+		
+		log.info("Fiding all Skill-Groups");
+		
 		return sgs.findAll();
 	}
 	
 	@GetMapping("{id}")
 	public SkillGroup findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
+		
+		log.info("The id passed in is: " + id);
 		
 		String jwt = JWT;
 		Jws<Claims> claims;
@@ -74,21 +87,29 @@ public class SkillGroupContoller {
 		} catch (ExpiredJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		} catch (UnsupportedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
+		
+		log.info("Fiding Skill-Group with id: " + id);
+		
 		return sgs.findById(id);
 	}
 }
