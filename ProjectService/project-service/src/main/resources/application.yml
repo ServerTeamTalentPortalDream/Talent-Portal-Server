@@ -1,3 +1,12 @@
+info:
+  component: Hystrix Dashboard
+
+management:
+  endpoints:
+     web:
+       exposure:
+         include: hystrix.stream
+
 server:
   port: 8088
 
