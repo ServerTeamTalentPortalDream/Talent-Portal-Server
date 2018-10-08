@@ -15,7 +15,7 @@ spring:
          use_jdbc_metadata_defaults: false
  datasource:
    driverClassName: org.postgresql.Driver
-   url: jdbc:postgresql://revature-1808.cpb9nl533suc.us-east-1.rds.amazonaws.com:5432/postgres
-   username: postgres
-   password: IncomT-65
+   url: ${URL}
+   username: ${U_NAME}
+   password: ${PASSWORD}
    initialization-mode: NEVER
