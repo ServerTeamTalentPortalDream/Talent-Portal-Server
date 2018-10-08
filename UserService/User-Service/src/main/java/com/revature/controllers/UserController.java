@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +25,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.dto.Credentials;
+import com.revature.dto.ResetPass;
+import com.revature.dto.ResourcesCred;
+import com.revature.models.Certs;
+import com.revature.models.Resources;
+import com.revature.models.Resumes;
+import com.revature.models.Skills;
 import com.revature.models.User;
+import com.revature.models.UserCerts;
+import com.revature.models.UserSkills;
+import com.revature.services.CertsService;
 import com.revature.services.EmailService;
+import com.revature.services.ResourcesService;
+import com.revature.services.SkillsService;
+import com.revature.services.UserCertsService;
 import com.revature.services.UserService;
+import com.revature.services.UserSkillsService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -34,25 +48,33 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
-@CrossOrigin(origins = "http://revature-1808.cnxwdhy3jnk8.us-west-2.rds.amazonaws.com:5432/postgres")
+@CrossOrigin
 @RestController
 //@JsonIgnoreProperties
 @RequestMapping("users")
 public class UserController {
 	SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-	
 	@Autowired
 	private UserService us;
-
 	@Autowired
 	private EmailService es;
+	@Autowired
+	private UserSkillsService usk;
+	@Autowired
+	private UserCertsService uc;
+	@Autowired
+	private ResourcesService rs;
+	@Autowired
+	private SkillsService ss;
+	@Autowired
+	private CertsService cs;
+
+	// POST
 
 	@PostMapping
-	public ResponseEntity<User> save(@RequestHeader("JWT" )String JWT, @RequestBody User u) {		
-		
+	public ResponseEntity<User> save(@RequestHeader("JWT" )String JWT, @RequestBody User u) {
 		ResponseEntity<User> re = new ResponseEntity<User>(u, HttpStatus.CREATED);
 		us.createUser(u);
 		return re;
@@ -60,7 +82,6 @@ public class UserController {
 
 	@PostMapping("login")
 	public Map<String,Object> login(@RequestBody Credentials u) {
-		
 		Map<String,Object> data = new HashMap<String,Object>();
 		String jwt = "0";
 		Date expDate = Date.from(Instant.now().plusSeconds(86400));
@@ -78,10 +99,8 @@ public class UserController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
-		User newUser = us.findByUserIdAndPass(u.getUserId(), u.getPass());
-		
-		data.put("user", newUser);
+		User user = us.findByUserIdAndPass(u.getUserId(), u.getPass());
+		data.put("user", user);
 		data.put("jwt", jwt);
 		
 		return data;
@@ -103,9 +122,6 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SignatureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
@@ -143,9 +159,11 @@ public class UserController {
 		user.setPass(String.copyValueOf(password));
 		us.saveAndFlush(user);
 	}
-	
+
+	// PUT
+
 	@PutMapping("resetPassword")
-	public String resetPassword(@RequestHeader("JWT" )String JWT, @RequestBody Credentials u) {
+	public String resetPassword(@RequestHeader("JWT" )String JWT, @RequestBody ResetPass rp) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -162,10 +180,7 @@ public class UserController {
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -174,12 +189,15 @@ public class UserController {
 		}
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
-		User user = us.findByUserId(u.getUserId());
-		if(user.getPass().equals(u.getPass())) {
-			return "passwords match";
+		User user = us.findByUserId(rp.getUserId());
+		String id = "";
+		id += rp.getUserId();
+		if (user.getPass().equals(UserService.generateSecurePassword(rp.getCurrentPassword(), id))) {
+			user.setPass(rp.getNewPassword());
+			us.saveAndFlush(user);
+			return "Password successfully changed";
 		}
-		
-		return "did not match";
+		return "Password did not match. Try Again";
 	}
 
 	@PutMapping("setPassword")
@@ -200,10 +218,7 @@ public class UserController {
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -216,9 +231,9 @@ public class UserController {
 		user.setPass(u.getPass());
 		us.saveAndFlush(user);
 	}
-	
-	@GetMapping
-	public List<User> findAll(@RequestHeader("JWT" )String JWT) {
+
+	@PutMapping("update/{associateId}")
+	public void createUserResources(@RequestHeader("JWT" )String JWT, @RequestBody Resources r, @PathVariable int associateId) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -235,10 +250,113 @@ public class UserController {
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SignatureException e) {
+		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String scope = (String) claims.getBody().get("scope");
+		Assert.assertEquals(scope, "self groups/users");
+		User user = us.findByAssociateId(associateId);
+		if (user.getAssociateId() == associateId) {
+			Resources newResource = new Resources();
+			newResource.setAssociateId(associateId);
+			newResource.setAupCert(r.isAupCert());
+			newResource.setProjectId(r.getProjectId());
+			newResource.setCompetencyTag(r.getCompetencyTag());
+			newResource.setGrade(r.getGrade());
+			newResource.setJoinDate(r.getJoinDate());
+			newResource.setLeaveDate(r.getLeaveDate());
+			newResource.setSkillGroupId(r.getSkillGroupId());
+			newResource.setCerts(new ArrayList<Certs>());
+			newResource.setSkills(new ArrayList<Skills>());
+			newResource.setResumes(new ArrayList<Resumes>());
+			rs.saveAndFlush(newResource);
+		}
+		us.saveAndFlush(user);
+	}
+
+	@PutMapping("update/{associateId}/{resourceId}")
+	public void updateUserResources(@RequestHeader("JWT" )String JWT, @RequestBody ResourcesCred rc, @PathVariable int associateId,
+			@PathVariable int resourceId) {
+		String jwt = JWT;
+		Jws<Claims> claims;
+		claims = null;
+		try {
+			claims = Jwts.parser()
+			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
+			  .parseClaimsJws(jwt);
+		} catch (ExpiredJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String scope = (String) claims.getBody().get("scope");
+		Assert.assertEquals(scope, "self groups/users");
+		User user = us.findByAssociateId(associateId);
+		for (Resources each : user.getResources()) {
+			if (each.getResourceId() == resourceId) {
+
+				Skills newSkills = new Skills();
+				newSkills.setResourceId(resourceId);
+				newSkills.setSkillId(rc.getSkillId());
+				ss.saveAndFlush(newSkills);
+
+				Certs newCerts = new Certs();
+				newCerts.setResourceId(resourceId);
+				newCerts.setCertId(rc.getCertId());
+				cs.saveAndFlush(newCerts);
+
+			}
+			rs.saveAndFlush(each);
+		}
+		UserSkills newUserSkills = new UserSkills();
+		newUserSkills.setAssociateId(associateId);
+		newUserSkills.setSkillId(rc.getSkillId());
+		usk.saveAndFlush(newUserSkills);
+
+		UserCerts newUserCerts = new UserCerts();
+		newUserCerts.setAssociateId(associateId);
+		newUserCerts.setCertId(rc.getCertId());
+		uc.saveAndFlush(newUserCerts);
+
+		us.saveAndFlush(user);
+	}
+
+	// GET
+
+	@GetMapping
+	public List<User> findAll(@RequestHeader("JWT" ) String JWT) {
+		String jwt = JWT;
+		Jws<Claims> claims;
+		claims = null;
+		try {
+			claims = Jwts.parser()
+			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
+			  .parseClaimsJws(jwt);
+		} catch (ExpiredJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -251,7 +369,7 @@ public class UserController {
 	}
 
 	@GetMapping("{userId}")
-	public User findByUserId(@RequestHeader("JWT" )String JWT, @PathVariable int userId) {
+	public User findByUserId(@RequestHeader("JWT") String JWT, @PathVariable int userId) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -268,10 +386,7 @@ public class UserController {
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -285,7 +400,7 @@ public class UserController {
 	}
 
 	@GetMapping("role/{role}")
-	public List<User> findByRole(@RequestHeader("JWT" )String JWT, @PathVariable int role) {
+	public List<User> findByRole(@RequestHeader("JWT") String JWT, @PathVariable int role) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -302,10 +417,7 @@ public class UserController {
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -315,5 +427,77 @@ public class UserController {
 		String scope = (String) claims.getBody().get("scope");
 		Assert.assertEquals(scope, "self groups/users");
 		return us.findByRole(role);
+	}
+
+	@GetMapping("skills/{associateId}")
+	public List<UserSkills> findAllUserSkills(@RequestHeader("JWT") String JWT, @PathVariable int associateId) {
+		String jwt = JWT;
+		Jws<Claims> claims;
+		claims = null;
+		try {
+			claims = Jwts.parser()
+			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
+			  .parseClaimsJws(jwt);
+		} catch (ExpiredJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String scope = (String) claims.getBody().get("scope");
+		Assert.assertEquals(scope, "self groups/users");
+		List<User> users = us.findAll();
+		for (User user : users) {
+			if (user.getAssociateId() == associateId) {
+				return user.getUserSkills();
+			}
+		}
+		return null;
+	}
+
+	@GetMapping("certs/{associateId}")
+	public List<UserCerts> findAllUserCerts(@RequestHeader("JWT") String JWT, @PathVariable int associateId) {
+		String jwt = JWT;
+		Jws<Claims> claims;
+		claims = null;
+		try {
+			claims = Jwts.parser()
+			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
+			  .parseClaimsJws(jwt);
+		} catch (ExpiredJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String scope = (String) claims.getBody().get("scope");
+		Assert.assertEquals(scope, "self groups/users");
+		List<User> users = us.findAll();
+		for (User user : users) {
+			if (user.getAssociateId() == associateId) {
+				return user.getUserCerts();
+			}
+		}
+		return null;
 	}
 }
