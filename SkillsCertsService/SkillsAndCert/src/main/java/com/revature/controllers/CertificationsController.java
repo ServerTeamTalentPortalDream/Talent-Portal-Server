@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.InvalidJWTException;
 import com.revature.model.Certifications;
 import com.revature.services.CertifiactionsService;
 
@@ -64,7 +65,10 @@ public class CertificationsController {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if(!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		log.info("Finding all Certifications");
 		
@@ -105,7 +109,10 @@ public class CertificationsController {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if(!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		log.info("Finding Certifications with id:" + id);
 		
