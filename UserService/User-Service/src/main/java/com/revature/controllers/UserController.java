@@ -80,7 +80,7 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public Map<String, Object> login(@RequestBody Credentials u) {
+	public ResponseEntity<Map<String, Object>> login(@RequestBody Credentials u) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		String jwt = "0";
 		Date expDate = Date.from(Instant.now().plusSeconds(86400));
@@ -96,9 +96,10 @@ public class UserController {
 		if (user != null) {
 			data.put("user", user);
 			data.put("jwt", jwt);
+			return new ResponseEntity<Map<String, Object>>(data,HttpStatus.OK);
 		}
 
-		return data;
+		return new ResponseEntity<Map<String, Object>>(data,HttpStatus.UNAUTHORIZED);
 	}
 
 	@PostMapping("changePass")
