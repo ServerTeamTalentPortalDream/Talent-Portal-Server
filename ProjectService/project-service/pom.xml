@@ -146,8 +146,8 @@
 
 	</dependencies>
 
-
-	<dependencyManagement>
+	<!-- 
+		<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -158,6 +158,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	-->
 
 	<build>
 		<finalName>project-service</finalName>
