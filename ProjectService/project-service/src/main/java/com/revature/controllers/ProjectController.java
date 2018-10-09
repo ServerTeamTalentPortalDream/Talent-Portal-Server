@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.InvalidJWTException;
 // import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.Project;
 import com.revature.service.ProjectService;
@@ -80,7 +81,10 @@ public class ProjectController {
 		}
 
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		List<Project> projects = ps.findAll();
 		return projects;
@@ -119,7 +123,10 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		return resp;
 	}
@@ -158,7 +165,10 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		return project;
 	}
 	// @HystrixCommand(fallbackMethod = "sendStatusCode")
@@ -191,7 +201,10 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		return ps.findRecent3();
 	}
 
@@ -226,7 +239,10 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		Optional<Project> respBody = ps.updateProject(p);
 		if(respBody.isPresent()) {
 			return new ResponseEntity<Project>(respBody.get(),HttpStatus.ACCEPTED);
