@@ -18,10 +18,7 @@ spring:
  datasource:
    driverClassName: org.postgresql.Driver
 
-   url: ${DB_URL}
-   username: ${DB_USERNAME}
-   password: ${DB_PASSWORD}
-   initialization-mode: NEVER
+   
    
 eureka:
   client:
