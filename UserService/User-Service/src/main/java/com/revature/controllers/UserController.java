@@ -139,16 +139,16 @@ public class UserController {
 	// PUT
 
 	@PutMapping("resetPassword")
-	public String resetPassword( @RequestBody ResetPass rp) {
+	public User resetPassword( @RequestBody ResetPass rp) {
 		User user = us.findByUserId(rp.getUserId());
 		String id = "";
 		id += rp.getUserId();
 		if (user.getPass().equals(UserService.generateSecurePassword(rp.getCurrentPassword(), id))) {
 			user.setPass(rp.getNewPassword());
 			us.saveAndFlush(user);
-			return "Password successfully changed";
+			return user;
 		}
-		return "Password did not match. Try Again";
+		return null;
 	}
 
 	@PutMapping("setPassword")
