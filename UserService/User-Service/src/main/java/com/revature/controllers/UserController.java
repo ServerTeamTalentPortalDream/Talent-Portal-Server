@@ -133,7 +133,7 @@ public class UserController {
 		es.sendEmail(passwordResetEmail);
 		user.setPass(String.copyValueOf(password));
 		us.saveAndFlush(user);
-		return user.getPass();
+		return String.copyValueOf(password);
 	}
 
 	// PUT
