@@ -44,7 +44,7 @@ public class ProjectService {
 	}
 	public Optional<Project> updateProject(Project newProject) {
 
-		Optional<Project> oldProject = pr.findByProjectId(newProject.getProjectId());
+		Optional<Project> oldProject = pr.findById(newProject.getProjectId());
 		oldProject.ifPresent(project -> {
 		
 			if(newProject.getCustomer() != null) {
