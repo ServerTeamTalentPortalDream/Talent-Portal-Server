@@ -138,8 +138,7 @@ public class UserController {
 	// PUT
 
 	@PutMapping("resetPassword")
-	public String resetPassword(@RequestHeader("JWT" )String JWT, @RequestBody ResetPass rp) {
-	
+	public String resetPassword( @RequestBody ResetPass rp) {
 		User user = us.findByUserId(rp.getUserId());
 		String id = "";
 		id += rp.getUserId();
