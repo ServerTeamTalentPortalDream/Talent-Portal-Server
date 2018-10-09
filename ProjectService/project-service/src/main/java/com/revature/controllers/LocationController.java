@@ -4,13 +4,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.InvalidJWTException;
 import com.revature.model.Location;
 import com.revature.service.LocationService;
 
@@ -19,6 +19,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
 @RestController
@@ -31,7 +32,7 @@ public class LocationController {
 	
 	@GetMapping
 	public List<Location> findLocations(@RequestHeader("JWT" )String JWT){
-		
+
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -48,6 +49,9 @@ public class LocationController {
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (SignatureException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,8 +59,13 @@ public class LocationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if(!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
+
 		return ls.findAll();
 	}
 }
