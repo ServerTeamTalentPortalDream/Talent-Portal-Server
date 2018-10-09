@@ -139,34 +139,7 @@ public class UserController {
 
 	@PutMapping("resetPassword")
 	public String resetPassword(@RequestHeader("JWT" )String JWT, @RequestBody ResetPass rp) {
-		String jwt = JWT;
-		Jws<Claims> claims;
-		claims = null;
-		try {
-			claims = Jwts.parser()
-			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
-			  .parseClaimsJws(jwt);
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String scope = (String) claims.getBody().get("scope");
-		if (!scope.equals("self groups/users")) {
-			System.out.println("exception thrown for self not equal to scope");
-			throw new InvalidJWTException();
-		}
+	
 		User user = us.findByUserId(rp.getUserId());
 		String id = "";
 		id += rp.getUserId();
