@@ -106,32 +106,8 @@ public class UserController {
 	}
 
 	@PostMapping("changePass")
-	public void findByUserIdAndEmail(@RequestHeader("JWT" )String JWT, @RequestBody Credentials u) {
-		String jwt = JWT;
-		Jws<Claims> claims;
-		claims = null;
-		try {
-			claims = Jwts.parser()
-			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
-			  .parseClaimsJws(jwt);
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+	public void findByUserIdAndEmail( @RequestBody Credentials u) {
+		
 		User user = us.findByUserIdAndEmail(u.getUserId(), u.getEmail());
 		SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
 		passwordResetEmail.setFrom("talentportal.server@gmail.com");
