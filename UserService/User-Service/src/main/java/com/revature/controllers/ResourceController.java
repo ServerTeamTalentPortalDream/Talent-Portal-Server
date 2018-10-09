@@ -3,7 +3,7 @@ package com.revature.controllers;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.exception.InvalidJWTException;
-import com.revature.model.SkillGroup;
-import com.revature.services.SkillGroupService;
+import com.revature.models.Resources;
+import com.revature.services.ResourcesService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -25,16 +25,13 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("skill-group")
-public class SkillGroupContoller {
-
-	private Logger log = Logger.getRootLogger();
+@RequestMapping("resources")
+public class ResourceController {
 	@Autowired
-	private SkillGroupService sgs;
+	private ResourcesService rs;
 	
 	@GetMapping
-	public List<SkillGroup> findAll(@RequestHeader("JWT" )String JWT) {
-		
+	public List<Resources> findAll(@RequestHeader("JWT" ) String JWT) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -45,42 +42,29 @@ public class SkillGroupContoller {
 		} catch (ExpiredJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		} catch (UnsupportedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-
 		if (!scope.equals("self groups/users")) {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
-		
-		log.info("Finding all Skill-Groups");
-		
-		return sgs.findAll();
+		return rs.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public SkillGroup findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
-		
-		
-		log.info("The id passed in is: " + id);
-		
+	@GetMapping("{resourceId}")
+	public Resources findByResourceId(@RequestHeader("JWT") String JWT, @PathVariable int resourceId) {
 		String jwt = JWT;
 		Jws<Claims> claims;
 		claims = null;
@@ -91,33 +75,26 @@ public class SkillGroupContoller {
 		} catch (ExpiredJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		} catch (UnsupportedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		} catch (MalformedJwtException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		}  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-
 		if (!scope.equals("self groups/users")) {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
-		
-		log.info("Finding Skill-Group with id: " + id);
-		
-		return sgs.findById(id);
+		Resources r = rs.findByResourceId(resourceId);
+		return r;
 	}
+
 }

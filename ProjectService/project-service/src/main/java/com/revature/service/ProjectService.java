@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.Project;
 import com.revature.repos.ProjectRepository;
 
@@ -17,7 +18,8 @@ public class ProjectService {
 
 	@Autowired
 	private ProjectRepository pr;
-
+	
+	@HystrixCommand(fallbackMethod = "saveFallback")
 	public int save(Project p) {
 		System.out.println(p.getStartDate());
 		if (p.getStartDate() ==null) {
@@ -26,14 +28,19 @@ public class ProjectService {
 		return pr.saveAndFlush(p).getProjectId();
 	}
 	
+	@HystrixCommand(fallbackMethod = "findAllFallback")
 	public List<Project> findAll() {
 		return pr.findAll();
 		
 	}
+	
+	@HystrixCommand(fallbackMethod = "findOneFallback")
 	public Project findOne(int id) {
 		Project p = pr.getOne(id);
 		return p;
 	}
+	
+	@HystrixCommand(fallbackMethod = "findRecent3Fallback")
 	public Project[] findRecent3() {
 		Project[] recents = new Project[3];
 		List<Project> orderedProjects = pr.findAllByOrderByStartDate();
@@ -42,9 +49,11 @@ public class ProjectService {
 		}
 		return recents;
 	}
+	
+	@HystrixCommand(fallbackMethod = "updateProjectFallback")
 	public Optional<Project> updateProject(Project newProject) {
 
-		Optional<Project> oldProject = pr.findById(newProject.getProjectId());
+		Optional<Project> oldProject = pr.findByProjectId(newProject.getProjectId());
 		oldProject.ifPresent(project -> {
 		
 			if(newProject.getCustomer() != null) {
@@ -74,4 +83,35 @@ public class ProjectService {
 
 				
 	}
+	
+
+	@SuppressWarnings("unused")
+	public int saveFallback(){
+		return 0;
+	}
+	
+	@SuppressWarnings("unused")
+	public List<Project> findAllFallback(){
+		List<Project> p = null;
+		return p;
+	}
+	
+	@SuppressWarnings("unused")
+	public Project findOneFallback(){
+		Project p = null;
+		return p;
+	}
+	
+	@SuppressWarnings("unused")
+	public Project[] findRecent3Fallback(){
+		Project[] p = null;
+		return p;
+	}
+	
+	@SuppressWarnings("unused")
+	public Optional<Project> updateProjectFallback(){
+		Optional<Project> p = null;
+		return p;
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,14 @@ public class ResourcesService {
 	}
 	public Resources saveAndFlush(Resources r) {
 		return rr.saveAndFlush(r);
+	}
+	
+	public Resources findByResourceId(int resourceId) {
+		Resources r = rr.findByResourceId(resourceId);
+		return r;
+	}
+	public List<Resources> findAll() {
+		return rr.findAll();
 	}
 
 }

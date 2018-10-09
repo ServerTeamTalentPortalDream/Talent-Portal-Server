@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.dto.Credentials;
 import com.revature.dto.ResetPass;
 import com.revature.dto.ResourcesCred;
+import com.revature.exception.InvalidJWTException;
 import com.revature.models.Certs;
 import com.revature.models.Resources;
 import com.revature.models.Resumes;
@@ -52,7 +52,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @CrossOrigin
 @RestController
-//@JsonIgnoreProperties
 @RequestMapping("users")
 public class UserController {
 	SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -107,32 +106,8 @@ public class UserController {
 	}
 
 	@PostMapping("changePass")
-	public void findByUserIdAndEmail(@RequestHeader("JWT" )String JWT, @RequestBody Credentials u) {
-		String jwt = JWT;
-		Jws<Claims> claims;
-		claims = null;
-		try {
-			claims = Jwts.parser()
-			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
-			  .parseClaimsJws(jwt);
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+	public String findByUserIdAndEmail( @RequestBody Credentials u) {
+		
 		User user = us.findByUserIdAndEmail(u.getUserId(), u.getEmail());
 		SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
 		passwordResetEmail.setFrom("talentportal.server@gmail.com");
@@ -158,46 +133,22 @@ public class UserController {
 		es.sendEmail(passwordResetEmail);
 		user.setPass(String.copyValueOf(password));
 		us.saveAndFlush(user);
+		return String.copyValueOf(password);
 	}
 
 	// PUT
 
 	@PutMapping("resetPassword")
-	public String resetPassword(@RequestHeader("JWT" )String JWT, @RequestBody ResetPass rp) {
-		String jwt = JWT;
-		Jws<Claims> claims;
-		claims = null;
-		try {
-			claims = Jwts.parser()
-			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
-			  .parseClaimsJws(jwt);
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+	public User resetPassword( @RequestBody ResetPass rp) {
 		User user = us.findByUserId(rp.getUserId());
 		String id = "";
 		id += rp.getUserId();
 		if (user.getPass().equals(UserService.generateSecurePassword(rp.getCurrentPassword(), id))) {
 			user.setPass(rp.getNewPassword());
 			us.saveAndFlush(user);
-			return "Password successfully changed";
+			return user;
 		}
-		return "Password did not match. Try Again";
+		return null;
 	}
 
 	@PutMapping("setPassword")
@@ -226,7 +177,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		User user = us.findByUserId(u.getUserId());
 		user.setPass(u.getPass());
 		us.saveAndFlush(user);
@@ -258,18 +212,20 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		User user = us.findByAssociateId(associateId);
 		if (user.getAssociateId() == associateId) {
 			Resources newResource = new Resources();
 			newResource.setAssociateId(associateId);
 			newResource.setAupCert(r.isAupCert());
 			newResource.setProjectId(r.getProjectId());
-			newResource.setCompetencyTag(r.getCompetencyTag());
-			newResource.setGrade(r.getGrade());
+			newResource.setCompetencyTags(r.getCompetencyTags());
+			newResource.setGrades(r.getGrades());
 			newResource.setJoinDate(r.getJoinDate());
 			newResource.setLeaveDate(r.getLeaveDate());
-			newResource.setSkillGroupId(r.getSkillGroupId());
 			newResource.setCerts(new ArrayList<Certs>());
 			newResource.setSkills(new ArrayList<Skills>());
 			newResource.setResumes(new ArrayList<Resumes>());
@@ -305,7 +261,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		User user = us.findByAssociateId(associateId);
 		for (Resources each : user.getResources()) {
 			if (each.getResourceId() == resourceId) {
@@ -364,7 +323,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		return us.findAll();
 	}
 
@@ -394,7 +356,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		User u = us.findByUserId(userId);
 		return u;
 	}
@@ -425,7 +390,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		return us.findByRole(role);
 	}
 
@@ -455,7 +423,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		List<User> users = us.findAll();
 		for (User user : users) {
 			if (user.getAssociateId() == associateId) {
@@ -491,7 +462,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		List<User> users = us.findAll();
 		for (User user : users) {
 			if (user.getAssociateId() == associateId) {
