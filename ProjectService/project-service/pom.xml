@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.9</version>
+		<version>1.5.9.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -131,13 +131,11 @@
 	    <dependency>
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-hystrix</artifactId>
-    		<version>1.4.5.RELEASE</version>
 		</dependency> 
 		
 		<dependency>
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
-    		<version>1.1.5.RELEASE</version>
 		</dependency>
 		
 	</dependencies>
@@ -148,7 +146,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Finchley.SR1</version>
+				<version>Edgware.SR4</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
