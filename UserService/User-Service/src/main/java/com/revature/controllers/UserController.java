@@ -106,7 +106,7 @@ public class UserController {
 	}
 
 	@PostMapping("changePass")
-	public void findByUserIdAndEmail( @RequestBody Credentials u) {
+	public String findByUserIdAndEmail( @RequestBody Credentials u) {
 		
 		User user = us.findByUserIdAndEmail(u.getUserId(), u.getEmail());
 		SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
@@ -133,6 +133,7 @@ public class UserController {
 		es.sendEmail(passwordResetEmail);
 		user.setPass(String.copyValueOf(password));
 		us.saveAndFlush(user);
+		return user.getPass();
 	}
 
 	// PUT
