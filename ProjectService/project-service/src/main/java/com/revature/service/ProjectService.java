@@ -2,6 +2,7 @@
 package com.revature.service;
 
 import java.util.Calendar;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,10 @@ public class ProjectService {
 			pr.saveAndFlush(project);
 		});
 			return oldProject;	
+	}
+	
+	public void deleteProject(int id) {
+		pr.delete(id);
 	}
 	
 	@SuppressWarnings("unused")
