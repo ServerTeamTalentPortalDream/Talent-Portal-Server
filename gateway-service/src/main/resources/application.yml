@@ -11,12 +11,36 @@ zuul:
       path: /project/**
       service-id: project-service
       strip-prefix: false
+    project-location-service:
+      path: /location/**
+      service-id: project-service
+      strip-prefix: false
     user-service:
       path: /users/**
       service-id: user-service
       strip-prefix: false
-    skill-cert-service:
+    user-resource-service:
+      path: /resources/**
+      service-id: user-service
+      strip-prefix: false
+    user-grades-service:
+      path: /grades/**
+      service-id: user-service
+      strip-prefix: false
+    user-competency-service:
+      path: /competency/**
+      service-id: user-service
+      strip-prefix: false
+    skill-service:
       path: /skills/**
+      service-id: skill-cert-service
+      strip-prefix: false
+    skill-group-service:
+      path: /skill-group/**
+      service-id: skill-cert-service
+      strip-prefix: false
+    certifications-service:
+      path: /certifications/**
       service-id: skill-cert-service
       strip-prefix: false
 
@@ -24,7 +48,8 @@ eureka:
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+#     http://localhost:8761/eureka
+      defaultZone: http://ec2-52-33-125-157.us-west-2.compute.amazonaws.com:8761/eureka
     instance:
       lease-expiration-duration-in-seconds: 2
       lease-renewal-interval-in-seconds: 1
