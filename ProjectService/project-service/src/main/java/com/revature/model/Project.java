@@ -46,6 +46,10 @@ public class Project {
 		this.supervisorId = supervisorId;
 		this.location = location;
 	}
+	public Project(int i, String string, String string2, java.util.Date date, java.util.Date date2, String string3,
+			int j, String string4) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getProjectId() {
 		return projectId;
 	}
