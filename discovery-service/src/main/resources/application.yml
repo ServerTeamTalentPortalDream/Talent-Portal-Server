@@ -8,3 +8,5 @@ server:
 eureka:
   client:
     register-with-eureka: false
+  instance:
+    preferIpAddress: true
