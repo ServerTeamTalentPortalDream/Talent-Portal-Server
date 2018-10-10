@@ -46,12 +46,10 @@ zuul:
 
 eureka:
   client:
-    register-with-eureka: true
-    service-url:
+    registerWithEureka: true
+    serviceUrl:
 #     http://localhost:8761/eureka
       defaultZone: http://ec2-52-33-125-157.us-west-2.compute.amazonaws.com:8761/eureka
-      useDnsForFetchingServiceUrls: true
-      eurekaServerDNSName: http://ec2-35-153-210-251.compute-1.amazonaws.com
       
 jwt:
   security:
