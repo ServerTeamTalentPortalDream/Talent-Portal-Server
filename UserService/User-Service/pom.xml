@@ -39,6 +39,7 @@
 		<dependency>
 		    <groupId>io.rest-assured</groupId>
 		    <artifactId>rest-assured</artifactId>
+		    <version>3.1.1</version>
 		    <scope>test</scope>
 		</dependency>
 		
@@ -132,6 +133,7 @@
 		<dependency>
     		<groupId>io.rest-assured</groupId>
     		<artifactId>rest-assured</artifactId>
+    		<version>3.0.0</version>
     		<scope>test</scope>
 		</dependency>
 		
@@ -144,10 +146,12 @@
 		<dependency>
     		<groupId>junit</groupId>
     		<artifactId>junit</artifactId>
+    		<version>4.12</version>
 		</dependency>
 		<dependency>
 	        <groupId>org.springframework.cloud</groupId>
 	        <artifactId>spring-cloud-starter-eureka</artifactId>
+	        <version>1.1.5.RELEASE</version>
 	    </dependency>
 	</dependencies>
 
@@ -160,17 +164,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Edgware.SR4</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement> 
 
 </project>
