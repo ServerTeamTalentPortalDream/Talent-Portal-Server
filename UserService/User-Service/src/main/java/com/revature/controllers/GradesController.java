@@ -3,7 +3,6 @@ package com.revature.controllers;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +59,6 @@ public class GradesController {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
-
 		return gs.findAll();
 	}
 

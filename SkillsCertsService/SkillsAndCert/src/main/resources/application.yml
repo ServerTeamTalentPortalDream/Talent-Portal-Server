@@ -17,6 +17,7 @@ spring:
          use_jdbc_metadata_defaults: false
  datasource:
    driverClassName: org.postgresql.Driver
+
    url: ${DB_URL}
    username: ${DB_USERNAME}
    password: ${DB_PASSWORD}
@@ -26,8 +27,5 @@ eureka:
   client:
     enabled: true
     service-url:
-      default-zone: http://localhost:8761/eureka
-  instance:
-    lease-expiration-duration-in-seconds: 2
-    lease-renewal-interval-in-seconds: 1
-
+#     http://localhost:8761/eureka
+      defaultZone: http://ec2-52-33-125-157.us-west-2.compute.amazonaws.com:8761/eureka

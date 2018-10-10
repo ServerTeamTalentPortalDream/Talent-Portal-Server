@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value=HttpStatus.UNAUTHORIZED)
 public class InvalidJWTException extends RuntimeException{
-	// testing exception
+	// invalid jwt returns unauthorized
 }

@@ -58,12 +58,12 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.6.0</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -78,13 +78,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -118,8 +118,12 @@
 			<version>1.2.17</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>javax.xml.bind</groupId> <artifactId>jaxb-api</artifactId> 
-			<version>2.3.0</version> </dependency> -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId> 
+			<artifactId>jaxb-api</artifactId> 
+			<version>2.3.0</version> 
+		</dependency> 
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
@@ -131,49 +135,37 @@
     		<version>4.12</version>
     		<scope>test</scope>
 		</dependency>
-
-		<!--  <dependency>
+		
 		<dependency>
 	        <groupId>org.springframework.cloud</groupId>
 	        <artifactId>spring-cloud-starter-eureka</artifactId>
-	        <version>1.1.5.RELEASE</version>
-	    </dependency>-->
+	    </dependency>
 
 		 <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-hystrix -->
 	    <dependency>
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-hystrix</artifactId>
-    		<version>1.4.5.RELEASE</version>
-		</dependency>
-
+		</dependency> 
+		
 		<dependency>
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
-    		<version>1.1.5.RELEASE</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
-		<dependency>
-    		<groupId>org.freemarker</groupId>
-    		<artifactId>freemarker</artifactId>
-    		<version>2.3.27-incubating</version>
-		</dependency>
-
+		
 	</dependencies>
-
-	<!-- 
-		<dependencyManagement>
+	
+	
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Finchley.SR1</version>
+				<version>Edgware.SR4</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
-	-->
+	</dependencyManagement> 
 
 	<build>
 		<finalName>project-service</finalName>

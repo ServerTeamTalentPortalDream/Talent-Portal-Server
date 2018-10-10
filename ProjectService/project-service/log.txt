@@ -85,192 +85,24 @@
 2018-10-04 10:23:16 ERROR ProjectController:57 - org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 2018-10-04 10:23:16 ERROR ProjectController:57 - java.base/java.lang.Thread.run(Unknown Source)
 2018-10-04 10:23:16 WARN  ProjectController:60 - failed create new project
-2018-10-08 10:13:03 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/index.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:13:03 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index_en_US.ftl"): Not found
-2018-10-08 10:13:03 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index_en.ftl"): Not found
-2018-10-08 10:13:03 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index.ftl"): Found
-2018-10-08 10:13:03 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/index.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/index.ftl]"
-2018-10-08 10:13:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/index.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:13:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:13:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:13:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:13:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:13:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/project.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/project_en_US.ftl"): Not found
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/project_en.ftl"): Not found
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/project.ftl"): Not found
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "error.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("error_en_US.ftl"): Not found
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("error_en.ftl"): Not found
-2018-10-08 10:15:04 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("error.ftl"): Not found
-2018-10-08 10:18:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("error_en_US.ftl"): Not found
-2018-10-08 10:18:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("error_en.ftl"): Not found
-2018-10-08 10:18:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("error.ftl"): Not found
-2018-10-08 10:18:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "error.ftl"("en_US", UTF-8, parsed) no source found.
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/index.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index_en_US.ftl"): Not found
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index_en.ftl"): Not found
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index.ftl"): Found
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/index.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/index.ftl]"
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/index.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:23:14 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:24:16 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:24:57 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:25:09 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:25:22 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:25:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:26:31 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:28:46 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:31:49 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:33:42 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:35:32 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:35:39 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:36:52 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:37:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:50:29 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed): using cached since class path resource [templates/hystrix/monitor.ftl] hasn't changed.
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 10:55:10 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.
-2018-10-08 11:20:33 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
-2018-10-08 11:20:34 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/jds98/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/index.ftl"("en_US", UTF-8, parsed); will try to load it.
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index_en_US.ftl"): Not found
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index_en.ftl"): Not found
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/index.ftl"): Found
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/index.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/index.ftl]"
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/index.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "spring.ftl"("en_US", UTF-8, parsed); will try to load it.
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
+2018-10-09 12:18:01 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "spring.ftl"("en_US", UTF-8, parsed) from "jar:file:/C:/Users/silve/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl"
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Couldn't find template in cache for "hystrix/monitor.ftl"("en_US", UTF-8, parsed); will try to load it.
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en_US.ftl"): Not found
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor_en.ftl"): Not found
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("hystrix/monitor.ftl"): Found
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - Loading template for "hystrix/monitor.ftl"("en_US", UTF-8, parsed) from "class path resource [templates/hystrix/monitor.ftl]"
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "hystrix/monitor.ftl"("en_US", UTF-8, parsed) cached copy not yet stale; using cached.
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en_US.ftl"): Not found
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring_en.ftl"): Not found
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - TemplateLoader.findTemplateSource("spring.ftl"): Found
+2018-10-09 12:18:20 DEBUG _Log4jLoggerFactory$Log4jLogger:44 - "spring.ftl"("en_US", UTF-8, parsed): using cached since jar:file:/C:/Users/silve/.m2/repository/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/view/freemarker/spring.ftl hasn't changed.

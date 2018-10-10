@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.exception.InvalidJWTException;
 import com.revature.models.Resources;
-import com.revature.models.User;
 import com.revature.services.ResourcesService;
 
 import io.jsonwebtoken.Claims;
@@ -61,7 +60,6 @@ public class ResourceController {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
-
 		return rs.findAll();
 	}
 	
@@ -95,7 +93,6 @@ public class ResourceController {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
-
 		Resources r = rs.findByResourceId(resourceId);
 		return r;
 	}

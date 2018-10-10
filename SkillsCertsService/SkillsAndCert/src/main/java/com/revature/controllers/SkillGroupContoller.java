@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,9 +27,8 @@ import io.jsonwebtoken.UnsupportedJwtException;
 @RestController
 @RequestMapping("skill-group")
 public class SkillGroupContoller {
-	
-	private Logger log = Logger.getRootLogger();
 
+	private Logger log = Logger.getRootLogger();
 	@Autowired
 	private SkillGroupService sgs;
 	
@@ -66,18 +64,20 @@ public class SkillGroupContoller {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		if(!scope.equals("self groups/users")) {
+
+		if (!scope.equals("self groups/users")) {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
 		
-		log.info("Fiding all Skill-Groups");
+		log.info("Finding all Skill-Groups");
 		
 		return sgs.findAll();
 	}
 	
 	@GetMapping("{id}")
 	public SkillGroup findById(@RequestHeader("JWT" )String JWT, @PathVariable int id) {
+		
 		
 		log.info("The id passed in is: " + id);
 		
@@ -110,12 +110,13 @@ public class SkillGroupContoller {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		if(!scope.equals("self groups/users")) {
+
+		if (!scope.equals("self groups/users")) {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
 		
-		log.info("Fiding Skill-Group with id: " + id);
+		log.info("Finding Skill-Group with id: " + id);
 		
 		return sgs.findById(id);
 	}

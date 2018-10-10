@@ -1,6 +1,7 @@
 
 package com.revature.service;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ProjectService {
 
 	@Autowired
 	private ProjectRepository pr;
-
+	
 	@HystrixCommand(fallbackMethod = "saveFallback")
 	public int save(Project p) {
 		System.out.println(p.getStartDate());
@@ -31,6 +32,7 @@ public class ProjectService {
 	@HystrixCommand(fallbackMethod = "findAllFallback")
 	public List<Project> findAll() {
 		return pr.findAll();
+		
 	}
 	
 	@HystrixCommand(fallbackMethod = "findOneFallback")
@@ -78,9 +80,12 @@ public class ProjectService {
 			}
 			pr.saveAndFlush(project);
 		});
-			return oldProject;	
+			return oldProject;
+
+				
 	}
 	
+
 	public void deleteProject(int id) {
 		pr.delete(id);
 	}
@@ -113,4 +118,5 @@ public class ProjectService {
 		Optional<Project> p = null;
 		return p;
 	}
+	
 }

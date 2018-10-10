@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exceptions.InvalidJWTException;
 import com.revature.dto.Credentials;
 import com.revature.dto.ResetPass;
 import com.revature.dto.ResourcesCred;
+import com.revature.exception.InvalidJWTException;
 import com.revature.models.Certs;
 import com.revature.models.Resources;
 import com.revature.models.Resumes;
@@ -80,7 +80,7 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public ResponseEntity<Map<String, Object>> login(@RequestBody Credentials u) {
+	public Map<String, Object> login(@RequestBody Credentials u) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		String jwt = "0";
 		Date expDate = Date.from(Instant.now().plusSeconds(86400));
@@ -92,44 +92,17 @@ public class UserController {
 			e.printStackTrace();
 		}
 		User user = us.findByUserIdAndPass(u.getUserId(), u.getPass());
-		
+
 		if (user != null) {
 			data.put("user", user);
 			data.put("jwt", jwt);
-			return new ResponseEntity<Map<String, Object>>(data,HttpStatus.OK);
 		}
 
-		return new ResponseEntity<Map<String, Object>>(data,HttpStatus.UNAUTHORIZED);
+		return data;
 	}
 
 	@PostMapping("changePass")
-	public void findByUserIdAndEmail(@RequestHeader("JWT") String JWT, @RequestBody Credentials u) {
-		String jwt = JWT;
-		Jws<Claims> claims;
-		claims = null;
-		try {
-			claims = Jwts.parser().setSigningKey("goldfishtastemoney".getBytes("UTF-8")).parseClaimsJws(jwt);
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String scope = (String) claims.getBody().get("scope");
-		if (!scope.equals("self groups/users")) {
-			System.out.println("exception thrown for self not equal to scope");
-			throw new InvalidJWTException();
-		}
+	public String findByUserIdAndEmail(@RequestBody Credentials u) {
 
 		User user = us.findByUserIdAndEmail(u.getUserId(), u.getEmail());
 		SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
@@ -156,47 +129,22 @@ public class UserController {
 		es.sendEmail(passwordResetEmail);
 		user.setPass(String.copyValueOf(password));
 		us.saveAndFlush(user);
+		return String.copyValueOf(password);
 	}
 
 	// PUT
 
 	@PutMapping("resetPassword")
-	public String resetPassword(@RequestHeader("JWT") String JWT, @RequestBody ResetPass rp) {
-		String jwt = JWT;
-		Jws<Claims> claims;
-		claims = null;
-		try {
-			claims = Jwts.parser().setSigningKey("goldfishtastemoney".getBytes("UTF-8")).parseClaimsJws(jwt);
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String scope = (String) claims.getBody().get("scope");
-		if (!scope.equals("self groups/users")) {
-			System.out.println("exception thrown for self not equal to scope");
-			throw new InvalidJWTException();
-		}
+	public User resetPassword(@RequestBody ResetPass rp) {
 		User user = us.findByUserId(rp.getUserId());
 		String id = "";
 		id += rp.getUserId();
 		if (user.getPass().equals(UserService.generateSecurePassword(rp.getCurrentPassword(), id))) {
 			user.setPass(rp.getNewPassword());
 			us.saveAndFlush(user);
-			return "Password successfully changed";
+			return user;
 		}
-		return "Password did not match. Try Again";
+		return null;
 	}
 
 	@PutMapping("setPassword")

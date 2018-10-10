@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,9 +27,8 @@ import io.jsonwebtoken.UnsupportedJwtException;
 @RestController
 @RequestMapping("certifications")
 public class CertificationsController {
-	
-	private Logger log = Logger.getRootLogger();
 
+	private Logger log = Logger.getRootLogger();
 	@Autowired
 	private CertifiactionsService cs;
 	
@@ -65,7 +63,8 @@ public class CertificationsController {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		if(!scope.equals("self groups/users")) {
+
+		if (!scope.equals("self groups/users")) {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
@@ -109,7 +108,8 @@ public class CertificationsController {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		if(!scope.equals("self groups/users")) {
+
+		if (!scope.equals("self groups/users")) {
 			System.out.println("exception thrown for self not equal to scope");
 			throw new InvalidJWTException();
 		}
