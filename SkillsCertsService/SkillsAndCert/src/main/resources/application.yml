@@ -18,7 +18,7 @@ spring:
  datasource:
    driverClassName: org.postgresql.Driver
 
-   url: jdbc:postgresql://revature-1808.cpb9nl533suc.us-east-1.rds.amazonaws.com:5432/postgres
+   url: ${DB_URL}
    username: ${DB_USERNAME}
    password: ${DB_PASSWORD}
    initialization-mode: NEVER
