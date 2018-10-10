@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -45,12 +45,13 @@
 			<version>0.6.0</version>
 		</dependency>
 	
-	
+		<!-- 
 		<dependency>
 		    <groupId>io.rest-assured</groupId>
 		    <artifactId>rest-assured</artifactId>
 		    <scope>test</scope>
 		</dependency>
+		 -->
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -99,13 +100,11 @@
 		    <version>2.9.2</version>
 		</dependency>
 		
-		<!-- 
 		<dependency>
 	        <groupId>org.springframework.cloud</groupId>
 	        <artifactId>spring-cloud-starter-eureka</artifactId>
 	        <version>1.1.5.RELEASE</version>
 	    </dependency>
-		 -->
 	<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
