@@ -17,6 +17,7 @@ zuul:
       strip-prefix: false
     user-service:
       path: /users/**
+      url: http://ec2-18-191-67-157.us-east-2.compute.amazonaws.com:8087/users
       service-id: user-service
       strip-prefix: false
     user-resource-service:
