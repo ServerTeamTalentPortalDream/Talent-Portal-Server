@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @SpringBootApplication
 @EnableSwagger2
-//@EnableCircuitBreaker
 //@EnableEurekaClient
 public class Application {
 

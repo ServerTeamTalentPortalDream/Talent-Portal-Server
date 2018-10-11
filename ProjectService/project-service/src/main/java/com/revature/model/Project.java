@@ -9,11 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 
 @Entity 
 @Table(name="project")
+@Proxy(lazy = false)
 public class Project {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
