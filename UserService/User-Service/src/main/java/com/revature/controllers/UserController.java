@@ -128,8 +128,8 @@ public class UserController {
 			password[i] = values.charAt(rndm_method.nextInt(values.length()));
 			System.out.println(password);
 		}
-		passwordResetEmail.setSubject("test");
-		passwordResetEmail.setText("temporary password: " + String.copyValueOf(password));
+		passwordResetEmail.setSubject("Talent Portal Reset Password Request");
+		passwordResetEmail.setText("Here is your temporary password: " + String.copyValueOf(password));
 		es.sendEmail(passwordResetEmail);
 		user.setPass(String.copyValueOf(password));
 		us.saveAndFlush(user);
@@ -361,6 +361,40 @@ public class UserController {
 			throw new InvalidJWTException();
 		}
 		User u = us.findByUserId(userId);
+		return u;
+	}
+	
+	@GetMapping("{associateId}")
+	public User findByAssociateId(@RequestHeader("JWT") String JWT, @PathVariable int associateId) {
+		String jwt = JWT;
+		Jws<Claims> claims;
+		claims = null;
+		try {
+			claims = Jwts.parser()
+			  .setSigningKey("goldfishtastemoney".getBytes("UTF-8"))
+			  .parseClaimsJws(jwt);
+		} catch (ExpiredJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedJwtException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String scope = (String) claims.getBody().get("scope");
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
+		User u = us.findByAssociateId(associateId);
 		return u;
 	}
 
