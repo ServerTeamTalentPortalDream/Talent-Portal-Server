@@ -37,8 +37,8 @@ public class ProjectService {
 	
 	@HystrixCommand(fallbackMethod = "findOneFallback")
 	public Project findOne(int id) {
-		Project p = pr.getOne(id);
-		return p;
+		Optional<Project> p = pr.findByProjectId(id);
+		return p.get();
 	}
 	
 	@HystrixCommand(fallbackMethod = "findRecent3Fallback")
