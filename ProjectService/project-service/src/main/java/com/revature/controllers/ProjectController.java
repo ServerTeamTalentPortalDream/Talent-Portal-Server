@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.exception.InvalidJWTException;
 // import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.revature.model.Project;
@@ -131,7 +132,7 @@ public class ProjectController {
 	}
 	
 	//finds a project by id
-	// @HystrixCommand(fallbackMethod = "sendStatusCode")
+	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	@Transactional
 	@GetMapping("{id}")
 	public Project findById(@RequestHeader("JWT" )String JWT,@PathVariable int id) {

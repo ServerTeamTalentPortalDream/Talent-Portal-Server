@@ -2,7 +2,10 @@ package Location;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+
 public class LocationTesting {
+	@Test
 	public void holdTest() {
 	assertEquals(1,1);
 	}

@@ -1,22 +1,13 @@
 package ProjectService;
 
-import static io.restassured.RestAssured.given;
-
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Date;
-
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.revature.model.Project;
-import com.revature.service.ProjectService;
-
-import io.restassured.response.Response;
 
 
 public class ProjectServiceTest {
-	public class LocationTesting {
+	
+		@Test
 		public void holdTest() {
 		assertEquals(1,1);
 		}
