@@ -364,7 +364,7 @@ public class UserController {
 		return u;
 	}
 	
-	@GetMapping("{associateId}")
+	@GetMapping("associate/{associateId}")
 	public User findByAssociateId(@RequestHeader("JWT") String JWT, @PathVariable int associateId) {
 		String jwt = JWT;
 		Jws<Claims> claims;
