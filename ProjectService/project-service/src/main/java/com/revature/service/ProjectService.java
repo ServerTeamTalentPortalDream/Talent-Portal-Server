@@ -20,7 +20,7 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository pr;
 	
-//	@HystrixCommand(fallbackMethod = "saveFallback")
+	@HystrixCommand(fallbackMethod = "saveFallback")
 	public int save(Project p) {
 		System.out.println(p.getStartDate());
 		if (p.getStartDate() ==null) {
@@ -35,13 +35,13 @@ public class ProjectService {
 		
 	}
 	
-//	@HystrixCommand(fallbackMethod = "findOneFallback")
+	@HystrixCommand(fallbackMethod = "findOneFallback")
 	public Project findOne(int id) {
 		Project p = pr.getOne(id);
 		return p;
 	}
 	
-//	@HystrixCommand(fallbackMethod = "findRecent3Fallback")
+	@HystrixCommand(fallbackMethod = "findRecent3Fallback")
 	public Project[] findRecent3() {
 		Project[] recents = new Project[3];
 		List<Project> orderedProjects = pr.findAllByOrderByStartDate();
@@ -51,7 +51,7 @@ public class ProjectService {
 		return recents;
 	}
 	
-//	@HystrixCommand(fallbackMethod = "updateProjectFallback")
+	@HystrixCommand(fallbackMethod = "updateProjectFallback")
 	public Optional<Project> updateProject(Project newProject) {
 
 		Optional<Project> oldProject = pr.findByProjectId(newProject.getProjectId());
@@ -91,7 +91,7 @@ public class ProjectService {
 	}
 	
 	@SuppressWarnings("unused")
-	public int saveFallback(){
+	public int saveFallback(Project p){
 		return 0;
 	}
 	
@@ -102,7 +102,7 @@ public class ProjectService {
 	}
 	
 	@SuppressWarnings("unused")
-	public Project findOneFallback(){
+	public Project findOneFallback(int id){
 		Project p = null;
 		return p;
 	}
@@ -114,7 +114,7 @@ public class ProjectService {
 	}
 	
 	@SuppressWarnings("unused")
-	public Optional<Project> updateProjectFallback(){
+	public Optional<Project> updateProjectFallback(Project newProject){
 		Optional<Project> p = null;
 		return p;
 	}
