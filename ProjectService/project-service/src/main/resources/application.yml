@@ -1,0 +1,36 @@
+info:
+  component: Hystrix Dashboard
+management:
+  endpoints:
+     web:
+       exposure:
+         include: hystrix.stream
+server:
+  port: 8088
+spring:
+  application:
+    name: project-service
+  cloud:
+    refresh:
+      enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        default_schema: cognizant_projects
+    show-sql: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://revature.c5u4wo8rhlrm.us-east-2.rds.amazonaws.com:5432/revature
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+eureka:
+  client:
+    enabled: true
+    service-url:
+#     http://localhost:8761/eureka
+      defaultZone: http://ec2-52-33-125-157.us-west-2.compute.amazonaws.com:8761/eureka

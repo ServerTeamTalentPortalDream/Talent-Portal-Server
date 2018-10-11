@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: gateway-service
+    
+server:
+  port: 8888
+  
+zuul:
+  routes:
+    project-service:
+      url: http://ec2-18-221-142-75.us-east-2.compute.amazonaws.com:8088/project
+      path: /project/**
+      service-id: project-service
+      strip-prefix: false
+    project-location-service:
+      url: http://ec2-18-221-142-75.us-east-2.compute.amazonaws.com:8088/location
+      path: /location/**
+      service-id: project-service
+      strip-prefix: false
+    user-service:
+      path: /users/**
+      url: http://ec2-18-191-67-157.us-east-2.compute.amazonaws.com:8087/users
+      service-id: user-service
+      strip-prefix: false
+    user-resource-service:
+      url: http://ec2-18-191-67-157.us-east-2.compute.amazonaws.com:8087/resources
+      path: /resources/**
+      service-id: user-service
+      strip-prefix: false
+    user-grades-service:
+      url: http://ec2-18-191-67-157.us-east-2.compute.amazonaws.com:8087/grades
+      path: /grades/**
+      service-id: user-service
+      strip-prefix: false
+    user-competency-service:
+      url: http://ec2-18-191-67-157.us-east-2.compute.amazonaws.com:8087/competency
+      path: /competency/**
+      service-id: user-service
+      strip-prefix: false
+    skill-service:
+      url: http://ec2-54-70-66-176.us-west-2.compute.amazonaws.com:5002/skills
+      path: /skills/**
+      service-id: skill-cert-service
+      strip-prefix: false
+    skill-group-service:
+      url: http://ec2-54-70-66-176.us-west-2.compute.amazonaws.com:5002/skill-group
+      path: /skill-group/**
+      service-id: skill-cert-service
+      strip-prefix: false
+    certifications-service:
+      url: http://ec2-54-70-66-176.us-west-2.compute.amazonaws.com:5002/certifications
+      path: /certifications/**
+      service-id: skill-cert-service
+      strip-prefix: false
+
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+#     http://localhost:8761/eureka
+      defaultZone: http://ec2-52-33-125-157.us-west-2.compute.amazonaws.com:8761/eureka
+      
+jwt:
+  security:
+    key: j3H5Ld5nYmGWyULy6xwpOgfSH++NgKXnJMq20vpfd+8=t
