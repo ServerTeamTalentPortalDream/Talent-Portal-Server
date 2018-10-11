@@ -24,7 +24,9 @@ public class ResumeService {
 		String output = "success";
 		long currentDateTime = System.currentTimeMillis();
 		Date date = new Date(currentDateTime);
-		String key = date.toString()+"resume.rar";
+		System.out.println(upload.split("\\\\")[upload.split("\\\\").length-1]);
+		String key = date.toString()+"~"+upload.split("\\\\")[upload.split("\\\\").length-1];
+//				upload.split("\\")[upload.split("\\").length-1];
 		s3.uploadFile(key, upload);
 		Resumes resume = new Resumes();
 		resume.setResume(key);
@@ -35,13 +37,9 @@ public class ResumeService {
 
 	public String downloadResume(String resume) {
 		String home = System.getProperty("user.home");
-		String[] split = resume.split("_");
-		System.out.println(Arrays.toString(split));
-		System.out.println((split[1]));
-//		String[] split2 = split[1].split(".");
-		String str = split[1].replace(".rar", "");
-		System.out.println(str);
-		s3.downloadFile(resume, home+"\\Downloads\\" + str + ".png");
+		System.out.println(resume.split("~")[1]);
+		
+		s3.downloadFile(resume, home+"\\Downloads\\"+resume.split("~")[1]);
 		return resume;
 	}
 
