@@ -3,6 +3,7 @@ package com.revature.service;
 
 import java.sql.Date;
 import java.util.Calendar;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -85,6 +86,10 @@ public class ProjectService {
 	}
 	
 
+	public void deleteProject(int id) {
+		pr.delete(id);
+	}
+	
 	@SuppressWarnings("unused")
 	public int saveFallback(){
 		return 0;
