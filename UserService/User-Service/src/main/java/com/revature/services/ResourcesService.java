@@ -38,14 +38,17 @@ public class ResourcesService {
 		return rr.save(r);
 	}
 	public Resources saveAndFlush(Resources r) {
+		System.out.println(r);
 		Resources r1=rr.saveAndFlush(r);
 		System.out.println(r1.getResourceId());
 		ArrayList<Skills> uskil1=new ArrayList<Skills>();
 		Skills skill1=new Skills();
+		System.out.println(r);
 		for(Skills each:r.getSkills()) {
 			skill1.setSkillId(each.getSkillId());
 			skill1.setResourceId(r1.getResourceId());
 			uskil1.add(skill1);
+			System.out.println(each.getSkillId());
 		}
 		sr.save(uskil1);
 		ArrayList<Certs> certi=new ArrayList<Certs>();
@@ -74,8 +77,8 @@ public class ResourcesService {
 			ucert.add(cert);
 		}
 		ucr.save(ucert);
-		ArrayList<Resumes> res=new ArrayList<Resumes>();
-		Resumes ress=new Resumes();
+//		ArrayList<Resumes> res=new ArrayList<Resumes>();
+//		Resumes ress=new Resumes();
 
 //		for(Resumes each:r.getResumes()) {
 //			ress.setId(each.getId());
