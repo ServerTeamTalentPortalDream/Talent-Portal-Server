@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.models.Resumes;
 import com.revature.services.ResumeService;
- @CrossOrigin
+@CrossOrigin
 @RestController
 @RequestMapping("resume")
 public class ResumeController {
