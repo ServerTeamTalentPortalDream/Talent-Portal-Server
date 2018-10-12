@@ -183,7 +183,6 @@ public class UserController {
 	}
 
 	@PutMapping("update/{associateId}")
-
 	public void createUserResources(@RequestHeader("JWT") String JWT, @RequestBody Resources r,
 			@PathVariable int associateId) {
 		String jwt = JWT;
@@ -225,9 +224,9 @@ public class UserController {
 			newResource.setCerts(new ArrayList<Certs>());
 			newResource.setSkills(new ArrayList<Skills>());
 			newResource.setResumes(new ArrayList<Resumes>());
-			return rs.saveAndFlush(newResource).getResourceId();
+			rs.saveAndFlush(newResource);
 		}
-		return 0;
+		us.saveAndFlush(user);
 	}
 
 	@PutMapping("update/{associateId}/{resourceId}")
