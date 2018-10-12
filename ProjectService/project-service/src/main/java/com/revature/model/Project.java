@@ -9,11 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 
 @Entity 
 @Table(name="project")
+@Proxy(lazy = false)
 public class Project {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -45,6 +49,10 @@ public class Project {
 		this.description = description;
 		this.supervisorId = supervisorId;
 		this.location = location;
+	}
+	public Project(int i, String string, String string2, java.util.Date date, java.util.Date date2, String string3,
+			int j, String string4) {
+		// TODO Auto-generated constructor stub
 	}
 	public int getProjectId() {
 		return projectId;

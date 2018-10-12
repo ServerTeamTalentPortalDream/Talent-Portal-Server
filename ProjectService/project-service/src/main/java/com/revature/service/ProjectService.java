@@ -3,6 +3,7 @@ package com.revature.service;
 
 import java.sql.Date;
 import java.util.Calendar;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -85,8 +86,12 @@ public class ProjectService {
 	}
 	
 
+	public void deleteProject(int id) {
+		pr.delete(id);
+	}
+	
 	@SuppressWarnings("unused")
-	public int saveFallback(){
+	public int saveFallback(Project p){
 		return 0;
 	}
 	
@@ -97,7 +102,7 @@ public class ProjectService {
 	}
 	
 	@SuppressWarnings("unused")
-	public Project findOneFallback(){
+	public Project findOneFallback(int id){
 		Project p = null;
 		return p;
 	}
@@ -109,7 +114,7 @@ public class ProjectService {
 	}
 	
 	@SuppressWarnings("unused")
-	public Optional<Project> updateProjectFallback(){
+	public Optional<Project> updateProjectFallback(Project newProject){
 		Optional<Project> p = null;
 		return p;
 	}

@@ -1,32 +1,22 @@
 package com.revature.services;
-
-import java.util.Arrays;
+ import java.util.Arrays;
 import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.revature.models.Resumes;
+ import com.revature.models.Resumes;
 import com.revature.repos.ResumeRepo;
-
-//import com.revature.repos.ResumeRepo;
-
-@Service
+ //import com.revature.repos.ResumeRepo;
+ @Service
 public class ResumeService {
-
-	@Autowired
+ 	@Autowired
 	private ResumeRepo rr;
-
-	@Autowired
+ 	@Autowired
 	private S3Service s3;
-
-	public String uploadResume(String upload, int resourceId) {
+ 	public String uploadResume(String upload, int resourceId) {
 		String output = "success";
 		long currentDateTime = System.currentTimeMillis();
 		Date date = new Date(currentDateTime);
-		System.out.println(upload.split("\\\\")[upload.split("\\\\").length-1]);
-		String key = date.toString()+"~"+upload.split("\\\\")[upload.split("\\\\").length-1];
-//				upload.split("\\")[upload.split("\\").length-1];
+		String key = date.toString()+"resume.rar";
 		s3.uploadFile(key, upload);
 		Resumes resume = new Resumes();
 		resume.setResume(key);
@@ -34,13 +24,15 @@ public class ResumeService {
 		rr.saveAndFlush(resume);
 		return output;
 	}
-
-	public String downloadResume(String resume) {
+ 	public String downloadResume(String resume) {
 		String home = System.getProperty("user.home");
-		System.out.println(resume.split("~")[1]);
-		
-		s3.downloadFile(resume, home+"\\Downloads\\"+resume.split("~")[1]);
+		String[] split = resume.split("_");
+		System.out.println(Arrays.toString(split));
+		System.out.println((split[1]));
+//		String[] split2 = split[1].split(".");
+		String str = split[1].replace(".rar", "");
+		System.out.println(str);
+		s3.downloadFile(resume, home+"\\Downloads\\" + str + ".png");
 		return resume;
 	}
-
-}
+ }

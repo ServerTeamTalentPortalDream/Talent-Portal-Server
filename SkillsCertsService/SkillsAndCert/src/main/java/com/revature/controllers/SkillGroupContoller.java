@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.exception.InvalidJWTException;
 import com.revature.model.SkillGroup;
 import com.revature.services.SkillGroupService;
 
@@ -64,7 +64,11 @@ public class SkillGroupContoller {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		log.info("Finding all Skill-Groups");
 		
@@ -106,7 +110,11 @@ public class SkillGroupContoller {
 			log.warn(e);
 		}
 		String scope = (String) claims.getBody().get("scope");
-		Assert.assertEquals(scope, "self groups/users");
+
+		if (!scope.equals("self groups/users")) {
+			System.out.println("exception thrown for self not equal to scope");
+			throw new InvalidJWTException();
+		}
 		
 		log.info("Finding Skill-Group with id: " + id);
 		
