@@ -222,9 +222,9 @@ public class UserController {
 			newResource.setGrades(r.getGrades());
 			newResource.setJoinDate(r.getJoinDate());
 			newResource.setLeaveDate(r.getLeaveDate());
-			newResource.setCerts(new ArrayList<Certs>());
-			newResource.setSkills(new ArrayList<Skills>());
-			newResource.setResumes(new ArrayList<Resumes>());
+			newResource.setCerts(r.getCerts());
+			newResource.setSkills(r.getSkills());
+			newResource.setResumes(r.getResumes());
 			return rs.saveAndFlush(newResource).getResourceId();
 		}
 		return 0;
