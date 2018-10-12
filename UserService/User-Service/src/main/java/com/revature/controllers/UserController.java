@@ -184,7 +184,7 @@ public class UserController {
 
 	@PutMapping("update/{associateId}")
 
-	public void createUserResources(@RequestHeader("JWT") String JWT, @RequestBody Resources r,
+	public int createUserResources(@RequestHeader("JWT") String JWT, @RequestBody Resources r,
 			@PathVariable int associateId) {
 		String jwt = JWT;
 		Jws<Claims> claims;
