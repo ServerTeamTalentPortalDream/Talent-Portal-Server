@@ -23,6 +23,7 @@ import com.revature.repos.UserRepo;
 public class UserService {
 	@Autowired
 	private UserRepo ur;
+	
 
 	private static final int ITERATIONS = 10000;
 	private static final int KEY_LENGTH = 256;

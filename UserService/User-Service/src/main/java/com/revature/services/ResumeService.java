@@ -1,5 +1,6 @@
 package com.revature.services;
- import java.util.Arrays;
+ import java.io.File;
+import java.util.Arrays;
 import java.util.Date;
  import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,27 +13,20 @@ public class ResumeService {
 	private ResumeRepo rr;
  	@Autowired
 	private S3Service s3;
- 	public String uploadResume(String upload, int resourceId) {
-		String output = "success";
+ 	public int uploadResume(File upload) {
 		long currentDateTime = System.currentTimeMillis();
 		Date date = new Date(currentDateTime);
-		String key = date.toString()+"resume.rar";
+		String key = date.toString()+"~"+upload.getName();
 		s3.uploadFile(key, upload);
 		Resumes resume = new Resumes();
 		resume.setResume(key);
-		resume.setResourceId(resourceId);
-		rr.saveAndFlush(resume);
-		return output;
+		resume.setResourceId(1);
+	rr.saveAndFlush(resume);
+		return rr.saveAndFlush(resume).getId();
 	}
- 	public String downloadResume(String resume) {
+ 	public File downloadResume(String resume) {
 		String home = System.getProperty("user.home");
-		String[] split = resume.split("_");
-		System.out.println(Arrays.toString(split));
-		System.out.println((split[1]));
-//		String[] split2 = split[1].split(".");
-		String str = split[1].replace(".rar", "");
-		System.out.println(str);
-		s3.downloadFile(resume, home+"\\Downloads\\" + str + ".png");
-		return resume;
+		  s3.downloadFile(resume, home+"\\Downloads\\"+resume.split("~")[1]);
+		return new File(home+"\\Downloads\\"+resume.split("~")[1]);
 	}
  }

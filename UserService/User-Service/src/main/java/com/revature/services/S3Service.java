@@ -28,9 +28,9 @@ public class S3Service implements S3Repos {
 	 * UPLOAD FILE to Amazon S3
 	 */
 	@Override
-	public void uploadFile(String keyName, String upload) {
+	public void uploadFile(String keyName, File upload) {
 	
-		final PutObjectRequest request = new PutObjectRequest(bucketName, keyName, new File(upload));
+		final PutObjectRequest request = new PutObjectRequest(bucketName, keyName, upload);
  		request.setGeneralProgressListener(new ProgressListener() {
 			@Override
 			public void progressChanged(ProgressEvent progressEvent) {
