@@ -22,6 +22,7 @@ import com.revature.repos.UserRepo;
 public class UserService {
 	@Autowired
 	private UserRepo ur;
+	
 
 	private static final int ITERATIONS = 10000;
 	private static final int KEY_LENGTH = 256;
@@ -78,8 +79,6 @@ public class UserService {
 		User u = ur.findByUserId(userId);
 		String id = "";
 		id += u.getUserId();
-		System.out.println(generateSecurePassword(pass, id));
-		System.out.println(u.getPass());
 		if (verifyUserPassword(pass, u.getPass(), id)) {
 			return u;
 		}
