@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +81,7 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public Map<String, Object> login(@RequestBody Credentials u) {
+	public ResponseEntity login(@RequestBody Credentials u) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		String jwt = "0";
 		Date expDate = Date.from(Instant.now().plusSeconds(86400));
@@ -88,17 +89,20 @@ public class UserController {
 			jwt = Jwts.builder().setSubject("users/TzMUocMF4p").setExpiration(expDate).claim("userid", u.getUserId())
 					.claim("scope", "self groups/users")
 					.signWith(SignatureAlgorithm.HS256, "goldfishtastemoney".getBytes("UTF-8")).compact();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			return new ResponseEntity<Map<String,Object>>(data,HttpStatus.UNAUTHORIZED);
 		}
-		User user = us.findByUserIdAndPass(u.getUserId(), u.getPass());
+		Optional<User> user = us.findByUserIdAndPass(u.getUserId(), u.getPass());
 
-		if (user != null) {
-			data.put("user", user);
+		if (user.isPresent()) {
+			data.put("user", user.get());
 			data.put("jwt", jwt);
+			return new ResponseEntity<Map<String,Object>>(data,HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Map<String,Object>>(data,HttpStatus.UNAUTHORIZED);
 		}
 
-		return data;
+		
 	}
 
 	@PostMapping("changePass")

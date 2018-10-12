@@ -5,6 +5,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -69,19 +70,25 @@ public class UserService {
 
 //	@HystrixCommand(fallbackMethod = "sendStatusCode")
 	public User findByUserId(int userId) {
-		User u = ur.findByUserId(userId);
-		return u;
+		Optional<User> u = ur.findByUserId(userId);
+		return u.get();
 	}
 
 //	@HystrixCommand(fallbackMethod = "sendStatusCode")
-	public User findByUserIdAndPass(int userId, String pass) {
-		User u = ur.findByUserId(userId);
+	public Optional<User> findByUserIdAndPass(int userId, String pass) {
+		Optional<User> u = ur.findByUserId(userId);
+		boolean verified = false;
+		if (u.isPresent()) {
 		String id = "";
-		id += u.getUserId();
-		if (verifyUserPassword(pass, u.getPass(), id)) {
+		id += u.get().getUserId();
+		if (verifyUserPassword(pass, u.get().getPass(), id)) {
 			return u;
+		} else {
+			u = Optional.empty();
 		}
-		return null;
+		};
+		return u;
+		
 	}
 
 //	@HystrixCommand(fallbackMethod = "sendStatusCode")
