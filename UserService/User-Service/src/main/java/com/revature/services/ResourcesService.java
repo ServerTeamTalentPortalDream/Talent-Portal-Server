@@ -39,6 +39,7 @@ public class ResourcesService {
 	}
 	public Resources saveAndFlush(Resources r) {
 		Resources r1=rr.saveAndFlush(r);
+		System.out.println(r1.getResourceId());
 		ArrayList<Skills> uskil1=new ArrayList<Skills>();
 		Skills skill1=new Skills();
 		for(Skills each:r.getSkills()) {
@@ -54,7 +55,7 @@ public class ResourcesService {
 			certif.setResourceId(r1.getResourceId());
 			certi.add(certif);
 		}
-		cr.save(certif);
+		cr.save(certi);
 		ArrayList<UserSkills> uskil=new ArrayList<UserSkills>();
 		UserSkills skill=new UserSkills();
 
@@ -76,13 +77,13 @@ public class ResourcesService {
 		ArrayList<Resumes> res=new ArrayList<Resumes>();
 		Resumes ress=new Resumes();
 
-		for(Resumes each:r.getResumes()) {
-			ress.setId(each.getId());
-			ress.setResourceId(r.getResourceId());
-			ress.setResume(ures.findOne(each.getId()).getResume());
-			res.add(ress);
-		}
-		ures.saveAndFlush(res);
+//		for(Resumes each:r.getResumes()) {
+//			ress.setId(each.getId());
+//			ress.setResourceId(r.getResourceId());
+//			ress.setResume(ures.findOne(each.getId()).getResume());
+//			res.add(ress);
+//		}
+//		ures.saveAndFlush(res);
 		return r1;
 	}
 	
