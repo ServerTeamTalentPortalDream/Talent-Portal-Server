@@ -78,6 +78,8 @@ public class UserService {
 		User u = ur.findByUserId(userId);
 		String id = "";
 		id += u.getUserId();
+		System.out.println(generateSecurePassword(pass, id));
+		System.out.println(u.getPass());
 		if (verifyUserPassword(pass, u.getPass(), id)) {
 			return u;
 		}
