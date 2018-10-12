@@ -97,7 +97,7 @@ public class UserController {
 		if (user.isPresent()) {
 			data.put("user", user.get());
 			data.put("jwt", jwt);
-			return new ResponseEntity<Map<String,Object>>(data,HttpStatus.ACCEPTED);
+			return new ResponseEntity<Map<String,Object>>(data,HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Map<String,Object>>(data,HttpStatus.UNAUTHORIZED);
 		}
